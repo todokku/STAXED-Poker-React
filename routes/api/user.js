@@ -61,13 +61,14 @@ router.put('/:id', function(req,res) {
 	})
 })
 
-router.delete(':/id', function(req,res) {
+router.delete('/:id', function(req,res) {
 	db('users')
 		.where({ id: req.params.id })
+		.first()
 		.del()
-		.then(() =>
+		.then(function() {
 			res.json({ success: true })
-		)
+		})
 })
 
 
