@@ -51,8 +51,12 @@ router.put('/:id', function(req,res) {
 	db('users')
 		.where({ id: req.params.id })
 		.update({
-			title: req.body.title || null,
-			is_done: req.body.is_done || null
+			email: req.body.email || null,
+			hashed_pw: req.body.hashed_pw || null,
+			name: req.body.name || null,
+			phone: req.body.phone || null,
+			balanceHours: req.body.balanceHours || null,
+			qualifierHours: req.body.qualifierHours || null
 		})
 		.returning('*')
 		.then(function(data) {
