@@ -26,3 +26,18 @@ Existing wordpress plugins tended to lead users away and charged varying monthly
 1. Choosing whether to handle Authentication with Firebse, Auth0, or my own shoddy bcrypt implementation.
 1. Mapping out Component Hierarchy & assessing what props Parents need to pass to Child components.
 1. Ensuring best practices for handling React Component Lifecycles when handling state and "re-renders"
+
+## Built With
+
+- [React](https://reactjs.org/) - Frontend Framework
+- [Stripe](https://striple.com/) - API used for membership dues and fees.
+- [Plaid](https://plaid.com/)
+- [Heroku](https://heroku.com/) - Deployment & database
+
+## Deployment
+
+Deployed Application using Heroku.
+
+## Authors
+
+- **Nathan Keolasy** - Full Stack Developer - [LinkedIn](https://www.linked.com/nathan-keolasy)

@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const db = require('../../db')
 
-
 router.get('/', function(req, res) {
 	db.select()
 	.from('users')
@@ -12,7 +11,6 @@ router.get('/', function(req, res) {
 	})
 })
 
-// body-parser lets server understand what your POSTed data.
 // INSERT INTO 'tableName"(col1, col2) VALUES (col1_value, col2_value);
 // SELECT * FROM TABLE WHERE ID = inserted_row;
 router.post('/', (req, res) => {
@@ -33,8 +31,7 @@ router.get('/:id', (req, res) =>
 		})
 )
 
-// IDEMOPOTENCE: is gonna be the say no matter how many times you call on something. (GET, POST)
-
+// IDEMOPOTENCE: is gonna be the say no matter how many times you call on something. 
 // PATCH only modifies the one we submit in the body.
 router.patch('/:id', function(req, res) {
 	db('users')
@@ -46,7 +43,7 @@ router.patch('/:id', function(req, res) {
 		})
 })
 
-// // PUT should replace everything with whats in body + replacing the rest with null.
+// PUT should replace everything with whats in body + replacing the rest with null.
 router.put('/:id', function(req,res) {
 	db('users')
 		.where({ id: req.params.id })
@@ -64,13 +61,14 @@ router.put('/:id', function(req,res) {
 	})
 })
 
-// // Delete pretty easy.
-// router.delete(':/id', function(req,res) {
-// 	db('todo')
-// 		.where({id: req.params.id}).del().then(function() {
-// 			res.json({ success: true })
-// 		})
-// })
+router.delete(':/id', function(req,res) {
+	db('users')
+		.where({ id: req.params.id })
+		.del()
+		.then(() =>
+			res.json({ success: true })
+		)
+})
 
 
 
