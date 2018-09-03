@@ -12,18 +12,10 @@ router.get('/', function(req, res) {
 		})
 })
 
-// req has object.body
+		
+// body-parser lets server understand what your POSTed data.
 // INSERT INTO 'tableName"(col1, col2) VALUES (col1_value, col2_value);
 // SELECT * FROM TABLE WHERE ID = inserted_row;
-// router.post('/', function(req,res) {
-// 	console.log('Hello Post')
-// 	db.insert(req.body).returning('*').into('users')
-// 		.then(function(data) {
-// 			res.send(data)
-// 		})
-// })
-
-// body-parser lets server understand what your POSTed data.
 router.post('/', (req, res) => {
 	db.insert(req.body)
 		.returning('*')

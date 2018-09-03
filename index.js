@@ -1,4 +1,5 @@
 const express = require('express');
+// lets server understand the data you POST to it.
 const bodyParser = require('body-parser');
 const apiRoute = require('./routes/api')
 
