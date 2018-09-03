@@ -31,13 +31,13 @@ Existing wordpress plugins tended to lead users away and charged varying monthly
 
 - [React](https://reactjs.org/) - Frontend Framework
 - [Stripe](https://striple.com/) - API used for membership dues and fees.
-- [Plaid](https://plaid.com/)
 - [Heroku](https://heroku.com/) - Deployment & database
+- [Firebase](https://firebase.com) - API to Handle User Authentication and "Signin With Google"
 
 ## Deployment
 
-Deployed Application using Heroku.
+Deployed Application using Heroku
 
 ## Authors
 
-- **Nathan Keolasy** - Full Stack Developer - [LinkedIn](https://www.linked.com/nathan-keolasy)
+- **Nathan Keolasy** - Full Stack Developer - [LinkedIn](https://www.linked.com/nathan-keolasy) - [Portfolio](https://www.keolazy.com)
