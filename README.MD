@@ -1,22 +1,23 @@
 ## STAXED Poker React App
 
-Freelance Client wanted a poker club membership application that wasn't third-party and clunky. Existing wordpress plugins tended to lead users away and charged varying monthly fees.
+Freelance Client wanted a poker club membership application that wasn't third-party and clunky.
+Existing wordpress plugins tended to lead users away and charged varying monthly fees.
 
 ## Minimum Viable Product:
 
-Users should be able to signup and have personal membership info persist.
-Users should be able to view Membership Info(balance, qualifierHours, etc)
-Users should be able to see how much time they have left.
-Admin should be able to CRUD user membership info except for password.
-Admin should be able to "Checkin/out" users.
-Admin should be able to update ClubInfo Component for Users to see present status of Club.
-Admin should be able to create other subadmins that have access to admin features.
+- Users should be able to signup and have personal membership info persist.
+- Users should be able to view Membership Info(balance, qualifierHours, etc)
+- Users should be able to see how much time they have left.
+- Admin should be able to CRUD user membership info except for password.
+- Admin should be able to "Checkin/out" users.
+- Admin should be able to update ClubInfo Component for Users to see present status of Club.
+- Admin should be able to create other subadmins that have access to admin features.
 
 ## Stretch Goals
 
-Users should be able to RSVP to Calendar.
-Users should be able to see info on other users attending an event.
-Admin should be able to CRUD new events onto the Calendar.
+- Users should be able to RSVP to Calendar.
+- Users should be able to see info on other users attending an event.
+- Admin should be able to CRUD new events onto the Calendar.
 
 ## Challenges
 
