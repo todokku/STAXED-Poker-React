@@ -10,6 +10,7 @@ exports.seed = function(knex, Promise) {
       phone: "210-777-7777",
       balanceHours: 10,
       qualifierHours: 25,
+      access: 'admin'
     },
     {
       id: 2,
@@ -18,7 +19,8 @@ exports.seed = function(knex, Promise) {
       name: "Stephen Poker",
       phone: "210-666-6666",
       balanceHours: 300,
-      qualifierHours: 9999
+      qualifierHours: 9999,
+      access: 'member'
     },
     {
       id: 3,
@@ -27,7 +29,8 @@ exports.seed = function(knex, Promise) {
       name: "Michael Whitzel",
       phone: "210-555-5555",
       balanceHours: 10,
-      qualifierHours: 25
+      qualifierHours: 25,
+      access: 'member'
     }
   ])
 };

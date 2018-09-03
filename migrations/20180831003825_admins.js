@@ -5,7 +5,8 @@ exports.up = function(knex, Promise) {
     table.string('hashed_pw');
     table.string('name');
 		table.string('phone');
-    table.string('adminType')
+		table.string('adminType'),
+		table.string('access');
 		table.timestamps(true, true);
 	});
 };

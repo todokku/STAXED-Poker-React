@@ -6,7 +6,8 @@ exports.up = function(knex, Promise) {
     table.string('name');
 		table.string('phone');
     table.integer('balanceHours');
-    table.integer('qualifierHours');
+		table.integer('qualifierHours');
+		table.string('access');
 		table.timestamps(true, true);
 	});
 };

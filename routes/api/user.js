@@ -53,7 +53,8 @@ router.put('/:id', function(req,res) {
 			name: req.body.name || null,
 			phone: req.body.phone || null,
 			balanceHours: req.body.balanceHours || null,
-			qualifierHours: req.body.qualifierHours || null
+			qualifierHours: req.body.qualifierHours || null,
+			access: req.body.access || null 
 		})
 		.returning('*')
 		.then(function(data) {
@@ -66,10 +67,20 @@ router.delete('/:id', function(req,res) {
 		.where({ id: req.params.id })
 		.first()
 		.del()
-		.then(function() {
+		.then(result => {
 			res.json({ success: true })
-		})
-})
+			// if(result.access == 'admin') {
+			// 	knex('users')
+			// 		.where({ id: req.params.id })
+			// 		.del()
+			// 		.then(postDelete => {
+			// 			res.status(200).json("User Succesfully Deleted");
+			// 		});
+			// } else {
+			// 	res.status(400).json("You Need Admin Privileges to Delete a User");
+			// }
+		});
+});
 
 
 
