@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Panel, ControlLabel, Glyphicon } from "react-bootstrap";
 import "./Profile.css";
-import axios from 'axios';
-import { API_URL } from '../constants';
-import ItemsBody from '../component/ItemsBody';
+import axios from "axios";
+import { API_URL } from "../constants";
 
 // profile = user object from auth0
 // userProfiles = users object from my database
@@ -28,14 +27,14 @@ class Profile extends Component {
   //     .catch(error => console.log(error.message))
   // }
 
-  // 
+  //
   // getUser() {
   //   axios.get(`${API_URL}/user/${userID}`)
   //     .then(response => this.setstate({ userProfile: res.data }))
   //     .catch(error => console.log(error.message)
   // }
 
-  // ADMIN only request looks like function below 
+  // ADMIN only request looks like function below
   // securedPing() {
   //   const { getAccessToken } = this.props.auth;
   //   const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
