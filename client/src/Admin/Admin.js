@@ -40,9 +40,7 @@ class Admin extends Component {
         <Button bsStyle="primary" onClick={this.adminPing.bind(this)}>
           Post a Message
         </Button>
-
-
-
+        
         <h2>{message}</h2>
       </div>
     );

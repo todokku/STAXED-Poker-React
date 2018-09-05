@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/keolazy/staxed-poker#readme",
   "dependencies": {
+    "auth0-js": "^9.7.3",
     "axios": "^0.18.0",
     "bcrypt-as-promised": "^1.1.0",
     "body-parser": "^1.18.3",

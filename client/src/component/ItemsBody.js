@@ -15,15 +15,20 @@ class ItemsBody extends Component {
   };
 
   componentWillMount() {
-    axios.get('/api/user').then((response) => {
+    axios.get('/api/user')
+      .then((response) => {
       console.log(response);
-      this.setState({ loading: false, users: response.data });
+      this.setState(
+        { loading: false,
+          users: response.data 
+        }
+      )
     });
   }
 
   renderUsers() {
     return _.map(this.state.users, (user) => {
-      return (
+      return ( 
         <ListUser key={user.id} access={user.access} email={user.email} balanceHours={user.balanceHours} qualifierHours={user.qualifierHours}  />
       );
     });
@@ -42,3 +47,5 @@ class ItemsBody extends Component {
 }
 
 export default ItemsBody;
+
+

@@ -11,9 +11,11 @@ app.use(bodyParser.urlencoded({
   extended: true 
 }))
 
+
 // Middleware
 app.use('/api', apiRoute);
 
+// Do I even need this? 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
