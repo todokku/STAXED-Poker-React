@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
-import './Profile.css';
+import React, { Component } from "react";
+import { Panel, ControlLabel, Glyphicon } from "react-bootstrap";
+import "./Profile.css";
 
 class Profile extends Component {
   componentWillMount() {
@@ -25,14 +25,16 @@ class Profile extends Component {
           <Panel header="Profile">
             <img src={profile.picture} alt="profile" />
             <div>
-              <ControlLabel><Glyphicon glyph="user" /> Nickname</ControlLabel>
+              <ControlLabel>
+                <Glyphicon glyph="user" /> Michael Whitzel
+              </ControlLabel>
               <h3>{profile.nickname}</h3>
             </div>
             <pre>{JSON.stringify(profile, null, 2)}</pre>
           </Panel>
-        </div> 
+        </div>
       </div>
-    )
+    );
   }
 }
 
