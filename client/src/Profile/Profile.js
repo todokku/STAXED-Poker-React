@@ -3,6 +3,7 @@ import { Panel, ControlLabel, Glyphicon } from "react-bootstrap";
 import "./Profile.css";
 import axios from 'axios';
 import { API_URL } from '../constants';
+import ItemsBody from '../component/ItemsBody';
 
 // profile = user object from auth0
 // userProfiles = users object from my database
@@ -21,11 +22,11 @@ class Profile extends Component {
     }
   }
 
-  getUsers() {
-    axios.get(`${API_URL}/user`)
-      .then(res => this.setState({ userProfiles: res.data}))
-      .catch(error => console.log(error.message))
-  }
+  // getUsers() {
+  //   axios.get(`${API_URL}/user`)
+  //     .then(res => this.setState({ userProfiles: res.data}))
+  //     .catch(error => console.log(error.message))
+  // }
 
   // 
   // getUser() {

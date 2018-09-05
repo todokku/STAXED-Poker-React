@@ -11,8 +11,6 @@ import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';
 
-
-
 // Instantiate new instance of Auth object. 
 const auth = new Auth();
 
