@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "ajv": "^6.5.3",
+    "auth0-js": "^9.7.3",
     "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.4",
@@ -25,10 +26,12 @@
     "react": "^16.1.1",
     "react-bootstrap": "^0.32.3",
     "react-dom": "^16.1.1",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "yarn-install": "^1.0.0"
   },
   "scripts": {
-    "start": "npm-run-all --parallel server:start client:start",
+    "start": "react-scripts start",
+    "server": "node server.js",
     "client:start": "react-scripts start",
     "server:start": "node server.js",
     "build": "react-scripts build",
