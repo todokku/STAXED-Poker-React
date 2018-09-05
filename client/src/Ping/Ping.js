@@ -5,20 +5,28 @@ import axios from 'axios';
 
 class Ping extends Component {
   componentWillMount() {
-    this.setState({ message: '' });
+    this.setState(
+      { message: ''
+    });
   }
+
+  // These Pings make requests to server.js. 
+  // Activated by Ping & Call Private Buttons
   ping() {
     axios.get(`${API_URL}/public`)
-      .then(response => this.setState({ message: response.data.message }))
+      .then(response => this.setState({ message: response.data.message
+      }))
       .catch(error => this.setState({ message: error.message }));
   }
+
   securedPing() {
     const { getAccessToken } = this.props.auth;
     const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
     axios.get(`${API_URL}/private`, { headers })
       .then(response => this.setState({ message: response.data.message }))
-      .catch(error => this.setState({ message: error.message }));
+      .catch(error => this.setState({ message: error.message }))
   }
+
   render() {
     const { isAuthenticated } = this.props.auth;
     const { message } = this.state;
@@ -29,6 +37,7 @@ class Ping extends Component {
           !isAuthenticated() &&
             <p>Log in to call a private (secured) server endpoint.</p>
         }
+
         <Button bsStyle="primary" onClick={this.ping.bind(this)}>Ping</Button>
         {' '}
         {

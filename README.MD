@@ -32,8 +32,8 @@ Existing wordpress plugins tended to lead users away and charged varying monthly
 - [React](https://reactjs.org/) - Frontend Framework
 - [Stripe](https://striple.com/) - API used for membership dues and fees.
 - [Heroku](https://heroku.com/) - Deployment & database
-- [Docker](https://docker.com/) -
-- [Firebase](https://firebase.com) - API to Handle User Authentication and "Signin With Google"
+- [Docker](https://docker.com/) - Cloud based containers to run VMs in.
+- [Auth0](https://auth0.com) - API to Handle User Authentication and "Signin With Google"
 
 ## Deployment
 
