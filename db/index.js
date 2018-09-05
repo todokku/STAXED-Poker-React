@@ -9,6 +9,5 @@ const knex = require('knex')(process.env.NODE_ENV !== 'production' ? {
 }
 )
 
-
 module.exports = knex
 

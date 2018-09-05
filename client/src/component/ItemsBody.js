@@ -16,6 +16,7 @@ class ItemsBody extends Component {
 
   componentWillMount() {
     axios.get('/api/user').then((response) => {
+      console.log(response);
       this.setState({ loading: false, users: response.data });
     });
   }
@@ -23,7 +24,7 @@ class ItemsBody extends Component {
   renderUsers() {
     return _.map(this.state.users, (user) => {
       return (
-        <ListUser key={user.id} access={user.access} email={user.email} balanceHours={user.balanceHours}  />
+        <ListUser key={user.id} access={user.access} email={user.email} balanceHours={user.balanceHours} qualifierHours={user.qualifierHours}  />
       );
     });
   }

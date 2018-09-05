@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+
 const db = require('../../db')
 
 router.get('/', function(req, res) {
@@ -32,6 +33,7 @@ router.get('/:id', (req, res) =>
 )
 
 // IDEMOPOTENCE: is gonna be the say no matter how many times you call on something. 
+
 // PATCH only modifies the one we submit in the body.
 router.patch('/:id', function(req, res) {
 	db('users')

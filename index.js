@@ -1,3 +1,4 @@
+// server.js equivalent
 const express = require('express');
 // lets server understand the data you POST to it.
 const bodyParser = require('body-parser');
@@ -10,6 +11,7 @@ app.use(bodyParser.urlencoded({
   extended: true 
 }))
 
+// Middleware
 app.use('/api', apiRoute);
 
 if(process.env.NODE_ENV === 'production') {

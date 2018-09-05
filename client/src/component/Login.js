@@ -7,7 +7,7 @@ function setErrorMsg(error) {
   }
 }
 
-export default class Login extends Component {
+class Login extends Component {
   state = { loginMessage: null }
   handleSubmit = (e) => {
     e.preventDefault()
@@ -21,6 +21,7 @@ export default class Login extends Component {
       .then(() => this.setState(setErrorMsg(`Password reset email sent to ${this.email.value}.`)))
       .catch((error) => this.setState(setErrorMsg(`Email address not found.`)))
   }
+  
   render () {
     return (
       <div className="col-sm-6 col-sm-offset-3">
@@ -48,3 +49,5 @@ export default class Login extends Component {
     )
   }
 }
+
+export default Login;

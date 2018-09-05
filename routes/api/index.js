@@ -5,5 +5,6 @@ const adminRoute = require('./admin');
 
 router.use('/user', userRoute);
 router.use('/admin', adminRoute);
+// router.use('/events'), eventRoute);
 
 module.exports = router;
