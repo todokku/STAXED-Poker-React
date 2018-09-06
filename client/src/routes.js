@@ -1,5 +1,4 @@
 // Equivalent to Index.js or Main.js
-// Handles all the Nav Routing.
 import React from 'react';
 import { Redirect, Route, Router } from 'react-router-dom';
 import App from './App';
@@ -11,7 +10,6 @@ import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';
 
-// Instantiate new instance of Auth object. 
 const auth = new Auth();
 
 const handleAuthentication = ({location}) => {
@@ -20,9 +18,7 @@ const handleAuthentication = ({location}) => {
   }
 }
 
-// /admin route. will probably need to include more "scope" later for more user functionality.
-
-// Only '/admin' cares about userHasScopres()
+// admin route. will probably need to include more "scope" later for more user functionality.
 export const makeMainRoutes = () => {
   return (
     <div>

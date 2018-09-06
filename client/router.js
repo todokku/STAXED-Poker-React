@@ -3,7 +3,6 @@ const bodyParser = require('body-parser')
 const apiRoute = require('./routes/api/index.js')
 
 const app = express()
-// Original index.js(backend).
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
 	extended: true
@@ -11,7 +10,6 @@ app.use(bodyParser.urlencoded({
 
 app.use('/api', apiRoute)
 
-// server.js fusion
 const jwt = require('express-jwt')
 const jwtAuthz = require('express-jwt-authz')
 const jwksRsa = require('jwks-rsa')

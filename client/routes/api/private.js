@@ -38,5 +38,4 @@ app.get('/', checkJwt, checkScopes, function(req, res) {
 	res.json({ message: 'Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.' })
 })
 
-
 module.exports = app;
