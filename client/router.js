@@ -11,16 +11,6 @@ app.use(bodyParser.urlencoded({
 
 app.use('/api', apiRoute)
 
-// build for deploymnt for knexapivid....not sure I need.
-// if (process.env.NODE_ENV === 'production') {
-// 	app.use(express.static('client/build'))
-
-// 	const path = require('path')
-// 	app.get('*', function (req, res) {
-// 		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-// 	})
-// }
-
 // server.js fusion
 const jwt = require('express-jwt')
 const jwtAuthz = require('express-jwt-authz')
@@ -33,11 +23,7 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 }
 
 app.use(cors())
-// end server.js fusion
 
-// Testing 3001 instead of 8000. 
-// Perfect fusion of knexAPIvid + 04-Authentication.
-// Consider changing proxy target in package.json now?
 const PORT = process.env.PORT || 3001
 app.listen(PORT)
 console.log('Nathans new server is listening on http://localhost:3001. The react app should be built and served at http://localhost:3000.')
