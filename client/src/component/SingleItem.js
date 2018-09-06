@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import UserCard from './UserCard';
+import UserCard from './UserCard';
 
 class SingleItem extends Component {
   constructor(props) {
@@ -28,7 +28,8 @@ class SingleItem extends Component {
       );
     }
     return (
-      <UserCard title={this.state.todo.title} isDone={this.state.todo.is_done} id={this.state.todo.id}/>
+      <UserCard email={this.state.user.email} access={this.state.user.access}
+      balanceHours={this.state.user.balanceHours} qualifierHours={this.state.user.qualifierHours} access={this.state.user.access} id={this.state.user.id} phone={this.state.user.phone}/>
     );
   }
 }

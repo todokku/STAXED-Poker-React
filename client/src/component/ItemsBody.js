@@ -4,7 +4,6 @@ import ListUser from './ListUser';
 import axios from 'axios';
 import _ from 'lodash';
 
-
 class ItemsBody extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +28,7 @@ class ItemsBody extends Component {
   renderUsers() {
     return _.map(this.state.users, (user) => {
       return ( 
-        <ListUser key={user.id} access={user.access} email={user.email} balanceHours={user.balanceHours} qualifierHours={user.qualifierHours}  />
+        <ListUser key={user.id} access={user.access} email={user.email} phone={user.phone} balanceHours={user.balanceHours} qualifierHours={user.qualifierHours}  />
       );
     });
   }
