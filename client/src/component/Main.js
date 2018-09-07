@@ -10,7 +10,7 @@ class Main extends Component {
   render(props) {
     return (
       <div>
-        <h1>Main Component Renders Yay</h1>
+        <h1>Main Component Renders ItemsBody</h1>
         <ItemsBody />
         {/* <BrowserRouter>
           <div>
