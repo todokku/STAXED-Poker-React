@@ -1,3 +1,4 @@
+// App.js is basically the NavBar
 import React, { Component } from "react";
 import { Navbar, Button } from "react-bootstrap";
 import "./App.css";

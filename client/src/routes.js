@@ -9,13 +9,11 @@ import Admin from './Admin/Admin';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';
-import { API_URL } from './../constants';
-import Main from './component/Main';
-import axios from 'axios';
+// import Main from './component/Main';
+// import axios from 'axios';
+// import { API_URL } from './constants';
 
 const auth = new Auth();
-
-// Test if payload can arrive here so we can pass it down to <Main /> in '/test'
 
 const handleAuthentication = ({location}) => {
   if (/access_token|id_token|error/.test(location.hash)) {
@@ -23,6 +21,7 @@ const handleAuthentication = ({location}) => {
   }
 }
 
+// Test if payload can arrive here so we can pass it down to <Main /> in '/test'
 // Functional Based Component. Can I squeeze some props from 'api/user' in here???
 export const makeMainRoutes = () => {
   return (
@@ -34,7 +33,7 @@ export const makeMainRoutes = () => {
 
             <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
 
-             <Route path="/test" render={(props) => <Main auth={auth} {...props} />} />
+             {/* <Route path="/test" render={(props) => <Main {...props} />} /> */}
 
             <Route path="/profile" render={(props) => (
               !auth.isAuthenticated() 
