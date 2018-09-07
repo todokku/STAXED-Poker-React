@@ -1,14 +1,22 @@
 const express = require('express')
 const router = express.Router()
-
 const db = require('../../db')
+
+const cors = require('cors')
+require('dotenv').config()
+
+if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
+	throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file'
+}
+
+router.use(cors())
 
 router.get('/', function(req, res) {
 	db.select()
 	.from('users')
 	.orderBy('id')
 	.then(function(data) {
-		res.send([data])
+		res.send(data)
 	})
 })
 

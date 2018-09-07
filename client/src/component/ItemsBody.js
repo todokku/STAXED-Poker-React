@@ -3,18 +3,19 @@ import ListUsers from './ListUsers';
 import ListUser from './ListUser';
 import axios from 'axios';
 import _ from 'lodash';
+import { API_URL } from './../constants';
 
 class ItemsBody extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       users: {}
     }
   };
 
-  componentWillMount() {
-    axios.get('/api/user')
+  componentDidMount() {
+    axios.get(`${API_URL}/user`)
       .then((response) => {
       console.log(response);
       this.setState(

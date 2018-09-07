@@ -1,97 +1,175 @@
 /* Profile */
 
-.profile-area img {
-  max-width: 150px;
-  margin-bottom: 20px;
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-family: Helvetica;
 }
 
-.panel-body h3 {
-  margin-top: 0;
+.profile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 450px;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.3);
 }
 
+.profile img {
+  width: 100%;
+}
+
+.profile .view {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 5px 10px;
+  background: #fff;
+  /* color: #262626; */
+  border-radius: 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.details {
+  height: 34%;
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  padding: 0px;
+  box-sizing: border-box;
+  /* background-color: #1b1c1d; */
+  background-color: #fff;
+  /* transition: 0.5s;
+  transform: perspective(500px) scale(0); */
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  justify-content: space-evenly;
+}
+
+.userdatalist {
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+  justify-content: space-evenly;
+}
+
+.username {
+  position: relative;
+  font-size: 15.4px;
+  font-weight: bold;
+  bottom: 3em;
+  padding: 13px;
+  border: 2px;
+  letter-spacing: -0.2px;
+  background-color: #fff;
+  /* background-color: #1b1c1d; */
+  /* background: -webkit-linear-gradient(#ffeeee, #ddefbb); */
+  box-shadow: 0 0px 0.6px rgba(0, 0, 0, 0.5);
+  /* color: #fff4ed; */
+  user-select: none;
+}
+
+.userbalance {
+  position: fixed;
+  font-size: 14.3px;
+  /* font-weight: bold; */
+  top: 80%;
+  right: 68%;
+  /* color: #fff4ed; */
+  user-select: none;
+}
+
+.userqualifier {
+  position: fixed;
+  font-size: 14.3px;
+  /* font-weight: bold; */
+  top: 80%;
+  left: 68%;
+  /* color: #fff4ed; */
+  user-select: none;
+}
+
+/* .profile-list-group {
+  align-items: left;
+  float: left;
+} */
+
+.details h2 {
+  margin: 0;
+  padding: 0;
+  color: #607d8b;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.details h2 span {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.details p {
+  margin: 0;
+  padding: 10px 0 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.details ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.details ul li {
+  list-style: none;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+/* .details ul li:nth-child(1) .fa {
+  color: #3b5998;
+}
+
+.details ul li:nth-child(2) .fa {
+  color: #3b5998;
+}
+
+.details ul li:nth-child(3) .fa {
+  color: #3b5998;
+} */
+
+.close {
+  font-size: 20px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: #f00;
+  cursor: pointer;
+}
+
+/* 
 .container {
   display: flex;
+  justify-content: center;
 }
 
-.wrapper {
+.card-container {
   display: flex;
-  flex-flow: row wrap;
-}
-
-.wrapper > * {
-  flex: 1 100%;
-}
-
-@media all and (min-width: 600px) {
-  .aside {
-    flex: 1 auto;
-  }
-}
-
-@media all and (min-width: 800px) {
-  .main {
-    flex: 2 0px;
-  }
-  .aside-1 {
-    order: 1;
-  }
-  .main {
-    order: 2;
-  }
-  .aside-2 {
-    order: 3;
-  }
-  .footer {
-    order: 4;
-  }
-}
-
-/* Navbar */
-
-.navigation {
-  list-style: none;
-  margin: 0;
-  background: #1d1e22;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-  justify-content: flex-end;
-}
-
-.navigation a {
-  text-decoration: none;
-  display: block;
-  padding: 1em;
-  color: white;
-}
-
-.navigation a:hover {
-  background: #303333;
-}
-
-@media all and (max-width: 800px) {
-  .navigation {
-    justify-content: space-around;
-  }
-}
-@media all and (max-width: 600px) {
-  .navigation {
-    -webkit-flex-flow: column wrap;
-    flex-flow: column wrap;
-    padding: 0;
-  }
-
-  .navigation a {
-    text-align: center;
-    padding: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .navigation li:last-of-type a {
-    border-bottom: none;
-  }
-}
+  justify-content: left;
+} */

@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
-import './Profile.css';
+import React, { Component } from "react";
+import { ListGroup, ListGroupItem, Glyphicon } from "react-bootstrap";
+import "./Profile.css";
+import axios from "axios";
+import { API_URL } from "../constants";
 
 class Profile extends Component {
   componentWillMount() {
@@ -19,19 +21,31 @@ class Profile extends Component {
   render() {
     const { profile } = this.state;
     return (
-      <div className="container">
-        <div className="profile-area">
-          <h1>{profile.name}</h1>
-          <Panel header="Profile">
-            <img src={profile.picture} alt="profile" />
-            <div>
-              <ControlLabel><Glyphicon glyph="user" /> Nickname</ControlLabel>
-              <h3>{profile.nickname}</h3>
-            </div>
-            <pre>{JSON.stringify(profile, null, 2)}</pre>
-          </Panel>
-        </div> 
-      </div>
+      <body>
+        <div className="profile">
+          <img src={profile.picture} alt="profile" />
+          <div className="details">
+            <ListGroup>
+              {/* <div className="userdatalist"> */}
+              <div className="username">
+                <i class="far fa-user-circle"> {profile.name}</i>
+              </div>
+              {/* changed profile.nickname to profile.name */}
+              <div className="userdatalist">
+                <div className="userbalance">
+                  <i class="far fa-clock"> Balance {profile.balanceHours}</i>
+                </div>
+
+                <div className="userqualifier">
+                  {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
+                  Qualifier {profile.qualifierHours}
+                </div>
+              </div>
+              {/* </div> */}
+            </ListGroup>
+          </div>
+        </div>
+      </body>
     );
   }
 }
