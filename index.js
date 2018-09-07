@@ -1,6 +1,5 @@
-// server.js equivalent
+// Head Router aka server.js equivalent 
 const express = require('express');
-// lets server understand the data you POST to it.
 const bodyParser = require('body-parser');
 const apiRoute = require('./routes/api')
 
@@ -11,11 +10,9 @@ app.use(bodyParser.urlencoded({
   extended: true 
 }))
 
-
-// Middleware
 app.use('/api', apiRoute);
 
-// Do I even need this? 
+// Production Use
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
@@ -25,6 +22,5 @@ if(process.env.NODE_ENV === 'production') {
   })
 }
 
-// const PORT = process.env.PORT || 8000;
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT);

@@ -10,8 +10,6 @@ const userRoute = require('./user');
 
 app.use('/user', userRoute);
 
-// 5:38AM objective = GET all users WHILE in private pathway
-
 if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
   throw "Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file";
 }
@@ -28,60 +26,16 @@ const checkJwt = jwt({
   }),
 
   // Validate the audience and the issuer.
-<<<<<<< HEAD:client/server.js
-  audience: process.env.AUTH0_AUDIENCE,
-  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
-  algorithms: ["RS256"]
-});
-
-const checkScopes = jwtAuthz(["read:messages"]);
-const checkScopesAdmin = jwtAuthz(["write:messages"]);
-
-app.get("/api/public", function(req, res) {
-  res.json({
-    message:
-      "Hello from a public endpoint! You don't need to be authenticated to see this."
-  });
-});
-
-app.get("/api/private", checkJwt, checkScopes, function(req, res) {
-  res.json({
-    message:
-      "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
-  });
-});
-
-app.post("/api/admin", checkJwt, checkScopesAdmin, function(req, res) {
-  res.json({
-    message:
-      "Hello from an admin endpoint! You need to be authenticated and have a scope of write:messages to see this."
-  });
-});
-
-app.listen(3001);
-console.log(
-  "Server listening on http://localhost:3001. The React app will be built and served at http://localhost:3000."
-);
-=======
 	audience: process.env.AUTH0_AUDIENCE,
 	issuer: `https://${process.env.AUTH0_DOMAIN}/`,
 	algorithms: ['RS256']
 })
 
 const checkScopes = jwtAuthz([ 'read:messages' ])
-// const checkScopesAdmin = jwtAuthz([ 'write:messages' ])
 
 // 'api/private' route.
 app.get('/', checkJwt, checkScopes, function(req, res) {
 	res.json({ message: 'Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.' })
 })
 
-// app.get('/', checkJwt, checkScopes, function(req,res) {
-  
-// })
-
-// app.listen(3001)
-// console.log('Server listening on http://localhost:3001. The React app will be built and served at http://localhost:3000.')
-
 module.exports = app;
->>>>>>> 05fd348c7a00b1930697e56314c9a70fca79b1ea:client/routes/api/private.js

@@ -9,6 +9,7 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 
 app.use(cors())
 
+// don't need '/public'
 app.get('/', function(req, res) {
 	res.json({ message: 'Hello from a public endpoint! You don\'t need to be authenticated to see this.' })
 })

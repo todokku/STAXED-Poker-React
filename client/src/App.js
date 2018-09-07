@@ -57,8 +57,9 @@ class App extends Component {
         <Navbar fluid>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/home">Auth0 - React</a>
+              <a href="/home">Stacked App</a>
             </Navbar.Brand>
+
             <Button
               bsStyle="primary"
               className="btn-margin"
@@ -66,6 +67,15 @@ class App extends Component {
             >
               Home
             </Button>
+
+            <Button
+              bsStyle="primary"
+              className="btn-margin"
+              onClick={this.goTo.bind(this, "test")}
+            >
+              Test
+            </Button>
+
             {!isAuthenticated() && (
               <Button
                 id="qsLoginBtn"
@@ -76,6 +86,7 @@ class App extends Component {
                 Log In
               </Button>
             )}
+
             {isAuthenticated() && (
               <Button
                 bsStyle="primary"
@@ -85,6 +96,7 @@ class App extends Component {
                 Profile
               </Button>
             )}
+
             {isAuthenticated() && (
               <Button
                 bsStyle="primary"
@@ -94,6 +106,7 @@ class App extends Component {
                 Ping
               </Button>
             )}
+
             {isAuthenticated() &&
               userHasScopes(["write:messages"]) && (
                 <Button
@@ -104,6 +117,7 @@ class App extends Component {
                   Admin
                 </Button>
               )}
+
             {isAuthenticated() && (
               <Button
                 id="qsLogoutBtn"

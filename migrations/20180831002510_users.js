@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
     table.integer('balanceHours');
 		table.integer('qualifierHours');
 		table.string('access');
+		table.boolean('checkedIn');
 		table.timestamps(true, true);
 	});
 };

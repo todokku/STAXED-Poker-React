@@ -10,8 +10,6 @@ class Ping extends Component {
     });
   }
 
-  // These Pings make requests to server.js. 
-  // Activated by Ping & Call Private Buttons
   ping() {
     axios.get(`${API_URL}/public`)
       .then(response => this.setState({ message: response.data.message
