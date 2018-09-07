@@ -41,6 +41,17 @@ body {
   font-weight: bold;
 }
 
+.profile-default {
+  /* background: "./../images/user-solid.png"
+
+    ; */
+
+  max-height: 100%;
+  max-width: 100%;
+  /* Centers the image */
+  margin: 0 auto;
+}
+
 .details {
   height: 34%;
   width: 100%;
