@@ -3,8 +3,8 @@ import CreateEditUser from './CreateEditUser';
 
 const CreateUser = () => {
   return (
-    <CreateUserTodo/>
+    <CreateEditUser/>
   );
 };
 
-export default CreateTodo;
+export default CreateUser;

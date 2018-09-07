@@ -10,7 +10,8 @@ exports.seed = function(knex, Promise) {
       phone: "210-777-7777",
       balanceHours: 10,
       qualifierHours: 25,
-      access: 'admin'
+      access: 'admin',
+      checkedIn: false
     },
     {
       id: 2,
@@ -20,7 +21,8 @@ exports.seed = function(knex, Promise) {
       phone: "210-666-6666",
       balanceHours: 300,
       qualifierHours: 9999,
-      access: 'member'
+      access: 'member',
+      checkedIn: false
     },
     {
       id: 3,
@@ -30,7 +32,8 @@ exports.seed = function(knex, Promise) {
       phone: "210-555-5555",
       balanceHours: 10,
       qualifierHours: 25,
-      access: 'member'
+      access: 'member',
+      checkedIn: false
     }
   ])
 };

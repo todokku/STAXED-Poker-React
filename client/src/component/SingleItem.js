@@ -29,7 +29,7 @@ class SingleItem extends Component {
     }
     return (
       <UserCard email={this.state.user.email} access={this.state.user.access}
-      balanceHours={this.state.user.balanceHours} qualifierHours={this.state.user.qualifierHours} access={this.state.user.access} id={this.state.user.id} phone={this.state.user.phone}/>
+      balanceHours={this.state.user.balanceHours} qualifierHours={this.state.user.qualifierHours} id={this.state.user.id} phone={this.state.user.phone} checkedIn={this.state.user.checkedIn}/>
     );
   }
 }
