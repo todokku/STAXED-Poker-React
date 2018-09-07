@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { makeMainRoutes } from './routes';
 // import Routes from './routes';
 
-
 const routes = makeMainRoutes();
 
 ReactDOM.render(

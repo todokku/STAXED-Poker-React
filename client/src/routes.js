@@ -23,6 +23,7 @@ const handleAuthentication = ({ location }) => {
   }
 };
 
+// Test if payload can arrive here so we can pass it down to <Main /> in '/test'
 // Functional Based Component. Can I squeeze some props from 'api/user' in here???
 export const makeMainRoutes = () => {
   return (
@@ -51,6 +52,7 @@ export const makeMainRoutes = () => {
               )
             }
           />
+          {/* <Route path="/test" render={(props) => <Main {...props} />} /> */}
 
           <Route
             path="/ping"
