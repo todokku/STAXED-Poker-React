@@ -7,11 +7,12 @@ import SingleItem from './SingleItem';
 import CreateUser from './CreateUser';
 
 class Main extends Component {
-  render() {
+  render(props) {
     return (
       <div>
-        <BrowserRouter>
+        {/* <BrowserRouter>
           <div>
+            <h1>Main Component Renders Yay</h1>
             <TopNav />
           </div>
           <div className="container">
@@ -21,7 +22,7 @@ class Main extends Component {
               <Route path='/user/new' component={CreateUser} />
             </Switch>
           </div>
-        </BrowserRouter>
+        </BrowserRouter> */}
       </div>
     )
   }

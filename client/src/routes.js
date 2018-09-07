@@ -9,7 +9,7 @@ import Admin from './Admin/Admin';
 import Callback from './Callback/Callback';
 import Auth from './Auth/Auth';
 import history from './history';
-// import Main from './component/Main';
+import Main from './component/Main';
 // import axios from 'axios';
 // import { API_URL } from './constants';
 
@@ -33,7 +33,7 @@ export const makeMainRoutes = () => {
 
             <Route path="/home" render={(props) => <Home auth={auth} {...props} />} />
 
-             {/* <Route path="/test" render={(props) => <Main {...props} />} /> */}
+             <Route path="/test" render={(props) => <Main {...props} />} />
 
             <Route path="/profile" render={(props) => (
               !auth.isAuthenticated() 
