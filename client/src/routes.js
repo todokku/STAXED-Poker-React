@@ -37,7 +37,10 @@ export const makeMainRoutes = () => {
             render={props => <Home auth={auth} {...props} />}
           />
 
-          <Route path="/test" render={(props) => <Main {...props} />} />
+          <Route path="/main" render={(props) => <Main {...props} />} />
+          {/* <Route path='/' exact component={ItemsBody} />
+          <Route path='/user/:id' component={SingleItem} />
+          <Route path='/user/new' component={CreateUser} /> */}
           
           <Route
             path="/profile"

@@ -25,6 +25,7 @@ class ItemsBody extends Component {
     });
   }
 
+  
   renderUsers() {
     return _.map(this.state.users, user => {
       return (

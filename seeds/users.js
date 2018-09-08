@@ -4,7 +4,7 @@ exports.seed = function(knex, Promise) {
   return knex('users').insert([
     {
       id: 1,
-      email: "nathank@gmail.com",
+      email: "nathan.keolasy@gmail.com",
       // hashed_pw: bcrypt.hashSync('nathan', 10);
       name: "Nathan Keolasy",
       phone: "210-777-7777",
@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
     },
     {
       id: 3,
-      email: "michael@gmail.com",
+      email: "michaelwhitzel@gmail.com",
       // hashed_pw: bcrypt.hashSync('michael', 10);
       name: "Michael Whitzel",
       phone: "210-555-5555",
