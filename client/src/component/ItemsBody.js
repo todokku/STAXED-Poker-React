@@ -1,20 +1,22 @@
-import React, { Component } from "react";
-import ListUsers from "./ListUsers";
-import ListUser from "./ListUser";
-import axios from "axios";
-import _ from "lodash";
+import React, { Component } from 'react';
+import ListUsers from './ListUsers';
+import ListUser from './ListUser';
+import axios from 'axios';
+import _ from 'lodash';
+import { API_URL } from './../constants';
 
 class ItemsBody extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       users: {}
     };
   }
 
-  componentWillMount() {
-    axios.get("/api/user").then(response => {
+  componentDidMount() {
+    axios.get(`${API_URL}/user`)
+      .then((response) => {
       console.log(response);
       this.setState({
         loading: false,
@@ -23,6 +25,7 @@ class ItemsBody extends Component {
     });
   }
 
+  
   renderUsers() {
     return _.map(this.state.users, user => {
       return (

@@ -9,8 +9,8 @@ import Admin from "./Admin/Admin";
 import Callback from "./Callback/Callback";
 import Auth from "./Auth/Auth";
 import history from "./history";
+import Main from "./component/Main";
 // import { API_URL } from "./constants";
-// import Main from "./component/Main";
 // import axios from "axios";
 
 const auth = new Auth();
@@ -37,10 +37,10 @@ export const makeMainRoutes = () => {
             render={props => <Home auth={auth} {...props} />}
           />
 
-          {/* <Route
-            path="/test"
-            render={props => <Main auth={auth} {...props} />}
-          /> */}
+          <Route path="/main" render={props => <Main {...props} />} />
+          {/* <Route path='/' exact component={ItemsBody} />
+          <Route path='/user/:id' component={SingleItem} />
+          <Route path='/user/new' component={CreateUser} /> */}
 
           <Route
             path="/profile"
@@ -52,7 +52,6 @@ export const makeMainRoutes = () => {
               )
             }
           />
-          {/* <Route path="/test" render={(props) => <Main {...props} />} /> */}
 
           <Route
             path="/ping"

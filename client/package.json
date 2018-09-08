@@ -31,7 +31,7 @@
     "yarn-install": "^1.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm-run-all --parallel server:start client:start",
     "server": "node router.js",
     "client:start": "react-scripts start",
     "server:start": "node router.js",

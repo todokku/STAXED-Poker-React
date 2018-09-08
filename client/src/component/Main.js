@@ -1,16 +1,18 @@
 // Main: the routing headquarters for future "Admin Control Mode"
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import TopNav from './TopNav';
+// import { BrowserRouter, Switch, Route } from 'react-router-dom'
+// import TopNav from './TopNav';
 import ItemsBody from './ItemsBody';
-import SingleItem from './SingleItem';
-import CreateUser from './CreateUser';
+// import SingleItem from './SingleItem';
+// import CreateUser from './CreateUser';
 
 class Main extends Component {
-  render() {
+  render(props) {
     return (
       <div>
-        <BrowserRouter>
+        <h1>Main Component Renders ItemsBody</h1>
+        <ItemsBody />
+        {/* <BrowserRouter>
           <div>
             <TopNav />
           </div>
@@ -21,7 +23,7 @@ class Main extends Component {
               <Route path='/user/new' component={CreateUser} />
             </Switch>
           </div>
-        </BrowserRouter>
+        </BrowserRouter> */}
       </div>
     )
   }
