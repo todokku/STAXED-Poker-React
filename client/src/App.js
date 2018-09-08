@@ -1,6 +1,6 @@
 // App.js is basically the NavBar
 import React, { Component } from "react";
-import { Navbar, Button } from "react-bootstrap";
+import { Nav, Navbar, NavItem, Button } from "react-bootstrap";
 import "./App.css";
 
 class App extends Component {
@@ -20,117 +20,98 @@ class App extends Component {
     const { isAuthenticated, userHasScopes } = this.props.auth;
 
     return (
-      <div>
-        {/* <Navbar inverse collapseOnSelect>
-  <Navbar.Header>
-    <Navbar.Brand>
-      <a href="#brand">React-Bootstrap</a>
-    </Navbar.Brand>
-    <Navbar.Toggle />
-  </Navbar.Header>
-  <Navbar.Collapse>
-    <Nav>
-      <NavItem eventKey={1} href="#">
-        Link
-      </NavItem>
-      <NavItem eventKey={2} href="#">
-        Link
-      </NavItem>
-      <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-        <MenuItem eventKey={3.1}>Action</MenuItem>
-        <MenuItem eventKey={3.2}>Another action</MenuItem>
-        <MenuItem eventKey={3.3}>Something else here</MenuItem>
-        <MenuItem divider />
-        <MenuItem eventKey={3.3}>Separated link</MenuItem>
-      </NavDropdown>
-    </Nav>
-    <Nav pullRight>
-      <NavItem eventKey={1} href="#">
-        Link Right
-      </NavItem>
-      <NavItem eventKey={2} href="#">
-        Link Right
-      </NavItem>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar>; */}
-
-        <Navbar fluid>
+      <div className="header-nav">
+        <Navbar inverse fluid collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/home">Stacked App</a>
             </Navbar.Brand>
-
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, "home")}
-            >
-              Home
-            </Button>
-
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, "test")}
-            >
-              Test
-            </Button>
-
-            {!isAuthenticated() && (
-              <Button
-                id="qsLoginBtn"
-                bsStyle="primary"
-                className="btn-margin"
-                onClick={this.login.bind(this)}
-              >
-                Log In
-              </Button>
-            )}
-
-            {isAuthenticated() && (
-              <Button
-                bsStyle="primary"
-                className="btn-margin"
-                onClick={this.goTo.bind(this, "profile")}
-              >
-                Profile
-              </Button>
-            )}
-
-            {isAuthenticated() && (
-              <Button
-                bsStyle="primary"
-                className="btn-margin"
-                onClick={this.goTo.bind(this, "ping")}
-              >
-                Ping
-              </Button>
-            )}
-
-            {isAuthenticated() &&
-              userHasScopes(["write:messages"]) && (
-                <Button
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav class="navbar-collapse" pullRight>
+              <NavItem>
+                <li
                   bsStyle="primary"
                   className="btn-margin"
-                  onClick={this.goTo.bind(this, "admin")}
+                  onClick={this.goTo.bind(this, "home")}
                 >
-                  Admin
-                </Button>
+                  Home
+                </li>
+              </NavItem>
+              {!isAuthenticated() && (
+                <NavItem>
+                  <li
+                    id="qsLoginBtn"
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.login.bind(this)}
+                  >
+                    Log In
+                  </li>
+                </NavItem>
               )}
 
-            {isAuthenticated() && (
-              <Button
-                id="qsLogoutBtn"
-                bsStyle="primary"
-                className="btn-margin"
-                onClick={this.logout.bind(this)}
-              >
-                Log Out
-              </Button>
-            )}
-          </Navbar.Header>
+              {isAuthenticated() && (
+                <NavItem>
+                  <li
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.goTo.bind(this, "profile")}
+                  >
+                    Profile
+                  </li>
+                </NavItem>
+              )}
+
+              {/* {isAuthenticated() && (
+                <NavItem>
+                  <li
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.goTo.bind(this, "ping")}
+                  >
+                    Ping
+                  </li>
+                </NavItem>
+              )} */}
+
+              {isAuthenticated() && ( // remove this ( after uncommenting below.
+                // userHasScopes(["write:messages"]) && (
+                <NavItem>
+                  <li
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.goTo.bind(this, "admin")}
+                  >
+                    Admin
+                  </li>
+                </NavItem>
+              )}
+
+              {isAuthenticated() && (
+                <NavItem>
+                  <li
+                    id="qsLogoutBtn"
+                    bsStyle="primary"
+                    className="btn-margin"
+                    onClick={this.logout.bind(this)}
+                  >
+                    Log Out
+                  </li>
+                </NavItem>
+              )}
+            </Nav>
+          </Navbar.Collapse>
         </Navbar>
+        <div class="footer">
+          <div className="footer-content">
+            2018 ©{/* <div className="icon-spacing"> */}
+            {/* <i class="fab fa-twitter-square" />
+            <i class="fab fa-facebook" /> */}
+            {/* </div> */}
+          </div>
+        </div>
       </div>
     );
   }

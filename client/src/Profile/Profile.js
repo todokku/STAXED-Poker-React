@@ -44,26 +44,35 @@ class Profile extends Component {
       <body>
         {/* <button onClick={this.checkGrav}>check grav</button> */}
         <div className="profile">
-          <img src={profile.picture} alt="please" className="img-responsive" />
+          <img src={profile.picture} className="profile-default" />
 
           <div className="details">
             <ListGroup>
               {/* <div className="userdatalist"> */}
               <div className="username">
+                {/* Can fix the default profile picture sizing issue
+                      by resizing the src/images/user-solid.png manually  */}
                 <i className="far fa-user-circle"> {profile.name}</i>
               </div>
-              {/* changed profile.nickname to profile.name */}
+              {/* Changed profile.nickname to profile.name */}
               <div className="userdatalist">
                 <div className="userbalance">
                   <i className="far fa-clock">
                     {" "}
-                    Balance {profile.balanceHours}
+                    Balance: {profile.balanceHours}
                   </i>
                 </div>
-
                 <div className="userqualifier">
-                  {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
-                  Qualifier {profile.qualifierHours}
+                  {/* <i class="far fa-heart"> */}
+                  {/* <i class="far fa-bookmark"> */}
+                  {/* <i class="far fa-bell"> */}
+                  <i class="far fa-thumbs-up">
+                    {" "}
+                    {/* <button class="pulse-button"> */}
+                    {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
+                    Qualifier: {profile.qualifierHours}
+                  </i>
+                  {/* </button> */}
                 </div>
               </div>
               {/* </div> */}
