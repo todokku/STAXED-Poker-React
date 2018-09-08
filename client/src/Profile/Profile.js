@@ -50,7 +50,7 @@ class Profile extends Component {
         if (this.checkGrav(profile.picture) === true) {
           profile.picture = defaultPicture;
           this.setState({ profile, emailString: profile.name });
-          this.matchEmail(this.state.emailString)
+          // this.matchEmail(this.state.emailString)
           // console.log(this.state);
         } 
         // google signins return usernames as "profile.nickname" (keolazy1).

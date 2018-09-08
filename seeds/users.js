@@ -34,6 +34,17 @@ exports.seed = function(knex, Promise) {
       qualifierHours: 25,
       access: 'member',
       checkedIn: false
+    },
+    {
+      id: 4,
+      email: "keolazy1@gmail.com",
+      // hashed_pw: bcrypt.hashSync('michael', 10);
+      name: "Nathan Keolaskys",
+      phone: "210-364-6666",
+      balanceHours: 6,
+      qualifierHours: 30,
+      access: 'admin',
+      checkedIn: false
     }
   ])
 };
