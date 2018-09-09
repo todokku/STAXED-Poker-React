@@ -5,7 +5,7 @@ import { API_URL } from "../constants";
 import axios from "axios";
 import _ from "lodash";
 import "../App.css";
-// import "../Admin/Admin.css";
+import "../Admin/Admin.css";
 // import { Button } from "react-bootstrap";
 
 class AdminControl extends Component {
@@ -18,7 +18,7 @@ class AdminControl extends Component {
   }
 
   componentDidMount() {
-    axios.get(`${API_URL}/admin`).then(response => {
+    axios.get(`${API_URL}/admin/users`).then(response => {
       console.log(response);
       this.setState({
         loading: false,

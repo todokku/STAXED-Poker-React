@@ -4,10 +4,9 @@
 
 .header-nav {
   overflow: visible !important;
-  position: fixed;
+  position: relative;
   z-index: 10000;
   width: 100%;
-  margin-bottom: 60px;
 }
 
 /* @media (min-width:320px)  { 

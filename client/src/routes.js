@@ -85,7 +85,7 @@ export const makeMainRoutes = () => {
           />
 
           <Route 
-            path='/admin/control/:id' exact
+            path='/control/:id' exact
             render={props => 
               !auth.isAuthenticated() ? (
                 <Redirect to="/home" />

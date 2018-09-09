@@ -14,7 +14,7 @@ const ListUser = ({
   return (
     <div>
       <Link
-        to={`/admin/${id}`}
+        to={`/control/${id}`}
         className={`list-group-item ${
           access === "admin" ? "bg-primary" : "bg-secondary"
         }
