@@ -15,7 +15,8 @@ class Profile extends Component {
       user: {},
       emailString: "",
       userId: undefined,
-      loading: true
+      loading: true,
+      isMounted: ''
     };
     this.checkGrav = this.checkGrav.bind(this);
     // this.matchUserId = this.matchUserId.bind(this);

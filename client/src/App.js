@@ -88,6 +88,7 @@ class App extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        
         <div className="footer">
           <div className="footer-content">
             2018 ©{/* <div className="icon-spacing"> */}
@@ -96,6 +97,7 @@ class App extends Component {
             {/* </div> */}
           </div>
         </div>
+
       </div>
     );
   }

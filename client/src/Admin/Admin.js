@@ -5,6 +5,7 @@ import axios from "axios";
 import "../Admin/Admin.css";
 import AdminControl from '../component/AdminControl';
 // import ItemsBody from '../component/ItemsBody'
+import { Link } from 'react-router-dom';
 
 class Admin extends Component {
   // this.onEdit = this.onEdit.bind(this);
@@ -65,15 +66,17 @@ class Admin extends Component {
               <hr />
 
               <h3>Call an Admin endpoint</h3>
-              <Button className="btn btn-primary" bsSize="small" onClick={this.adminPing.bind(this)}>
+              {/* <Button className="btn btn-primary" bsSize="small" onClick={this.adminPing.bind(this)}>
                 Post a Message. Or User 
               </Button>
               <Button className="btn btn-secondary" onClick={this.getAdmins.bind(this)}>
                 Get Admins 
-              </Button>
-              <Button className="btn btn-secondary" onClick={this.onViewUsers.bind(this)}>
+              </Button> */}
+              {/* <Button className="btn btn-secondary" onClick={this.onViewUsers.bind(this)}>
                 Toggle View Users 
-              </Button>
+              </Button> */}
+
+              <Link to="/admin/control">Manage Users</Link>
 
               <h2>{message}</h2>
             </div>
