@@ -55,7 +55,7 @@ exports.seed = function(knex, Promise) {
       phone: "210-364-6666",
       balanceHours: 6,
       qualifierHours: 30,
-      access: 'admin',
+      access: 'member',
       checkedIn: false,
       username: '',
       nickname: '',

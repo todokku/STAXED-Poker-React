@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { API_URL } from "../constants";
 
 class SingleUserEdit extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class SingleUserEdit extends Component {
 
     this.state = {
       id: props.id || '',
+      name: props.name || '',
       email: props.email || '',
       access: props.access || '',
       balanceHours: props.balanceHours || '',
@@ -30,12 +32,13 @@ class SingleUserEdit extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { email, access, phone, balanceHours, qualifierHours, checkedIn } = this.state;
+    const { email, name, access, phone, balanceHours, qualifierHours, checkedIn } = this.state;
     const { id, history } = this.props;
     //We're editing
     if (id) {
-      axios.put(`/api/user/${id}`, {
+      axios.put(`${API_URL}/user/${id}`, {
           email: email,
+          name: name,
           phone: phone,
           access: access,
           balanceHours: balanceHours,
@@ -47,7 +50,7 @@ class SingleUserEdit extends Component {
       });
     } else {
       //we're not
-      axios.post('/api/user', { email: email, balanceHours: balanceHours, access: access, qualifierHours: qualifierHours, phone: phone }).then(() => {
+      axios.post('${API_URL}/user', { email: email, balanceHours: balanceHours, access: access, qualifierHours: qualifierHours, phone: phone }).then(() => {
         history.push('/')
       });
     }
@@ -58,31 +61,31 @@ class SingleUserEdit extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="email">Email Here</label>
+          <label htmlFor="email">Email: {email}</label>
           <input name="email" type="text" className="form-control" id="email" value={email}
                  onChange={this.onChangeItem}/>
         </div>
 
         <div className="form-group">
-          <label htmlFor="title">Balance Hours</label>
+          <label htmlFor="title">Balance Hours: {balanceHours}</label>
           <input name="balanceHours" type="text" className="form-control" id="balanceHours" value={balanceHours}
                  onChange={this.onChangeItem}/>
         </div>
 
         <div className="form-group">
-          <label htmlFor="title">Qualifier Hours</label>
+          <label htmlFor="title">Qualifier Hours: {qualifierHours}</label>
           <input name="qualifierHours" type="text" className="form-control" id="qualifierHours" value={qualifierHours}
                  onChange={this.onChangeItem}/>
         </div>
 
         <div className="form-group">
-          <label htmlFor="title">Phone</label>
+          <label htmlFor="phone">Phone: {phone}</label>
           <input name="phone" type="text" className="form-control" id="phone" value={phone}
                  onChange={this.onChangeItem}/>
         </div>
 
         <div className="form-group">
-          <label htmlFor="checkedIn">CheckIn Status:</label>
+          <label htmlFor="checkedIn">CheckIn Status: {checkedIn}</label>
           <select name="checkedIn" className="form-control" id="checkedIn" value={checkedIn}
                   onChange={this.onChangeItem}>
             <option value="true">Checked In</option>
@@ -91,7 +94,7 @@ class SingleUserEdit extends Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="access">Club Access Type</label>
+          <label htmlFor="access">Club Access Type: {access}</label>
           <select name="access" className="form-control" id="access" value={access}
                   onChange={this.onChangeItem}>
             <option value="member">Member</option>
@@ -101,7 +104,7 @@ class SingleUserEdit extends Component {
         </div>
 
           <div className="d-flex justify-content-between align-items-center mt-3">
-            <button type="submit" className="btn btn-primary">Submit New User</button>
+            <button type="submit" className="btn btn-primary">Submit New Info</button>
             <button type="buttom" className="btn btn-danger" onClick={this.props.toggleEdit}>Cancel</button>
           </div>
       </form>

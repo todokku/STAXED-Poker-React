@@ -89,7 +89,6 @@ router.put('/:id', function(req,res) {
 		.where({ id: req.params.id })
 		.update({
 			email: req.body.email || null,
-			hashed_pw: req.body.hashed_pw || null,
 			name: req.body.name || null,
 			phone: req.body.phone || null,
 			balanceHours: req.body.balanceHours || null,

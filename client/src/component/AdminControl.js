@@ -33,6 +33,7 @@ renderUsers() {
       <ListUser
         key={user.id}
         id={user.id}
+        name={user.name}
         access={user.access}
         email={user.email}
         phone={user.phone}
