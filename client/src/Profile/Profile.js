@@ -21,7 +21,6 @@ class Profile extends Component {
     // this.matchUserId = this.matchUserId.bind(this);
   }
 
-
   // moved initial setState to constructor above.
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
@@ -125,15 +124,9 @@ class Profile extends Component {
                   <i className="far fa-clock"> Balance: {user.balanceHours}</i>
                 </div>
                 <div className="userqualifier">
-<<<<<<< HEAD
                   {/* <i className="far fa-heart"> */}
                   {/* <i className="far fa-bookmark"> */}
                   {/* <i className="far fa-bell"> */}
-=======
-                  {/* <i class="far fa-heart"> */}
-                  {/* <i class="far fa-bookmark"> */}
-                  {/* <i class="far fa-bell"> */}
->>>>>>> 389eb392edc288ae01ac1984d8ba5ac5505ad34c
                   <i className="far fa-thumbs-up">
                     {" "}
                     {/* <button class="pulse-button"> */}

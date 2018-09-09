@@ -66,7 +66,7 @@ class Admin extends Component {
               </p>
               <hr />
 
-              <h3>Call an Admin endpoint</h3>
+              {/* <h3>Call an Admin endpoint</h3>
               <Button
                 className="btn btn-primary"
                 bsSize="small"
@@ -79,7 +79,7 @@ class Admin extends Component {
                 onClick={this.getAdmins.bind(this)}
               >
                 Get Admins
-              </Button>
+              </Button> */}
               <Button
                 className="btn btn-secondary"
                 onClick={this.onViewUsers.bind(this)}
