@@ -14,6 +14,8 @@ export default class Auth {
     responseType: "token id_token",
     scope: this.requestedScopes
   });
+  // my keolazy1 adminId. consider using an array for steve and employees
+  adminId = 'google-oauth2|116920368241262075078';
 
   constructor() {
     this.login = this.login.bind(this);
@@ -23,6 +25,23 @@ export default class Auth {
     this.userHasScopes = this.userHasScopes.bind(this);
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getProfile = this.getProfile.bind(this);
+    this.getUniqueId = this.getUniqueId.bind(this);
+  }
+
+  getUniqueId() {
+    if (!this.userProfile) {
+      this.getProfile((err, profile) => {
+        console.log(profile.sub)
+        const uniqueId = profile.sub
+        console.log(uniqueId) 
+        return uniqueId
+      });
+    } else {
+      console.log('No userProfile')
+      const uniqueId = this.userProfile.sub;
+      console.log(uniqueId)
+      return uniqueId 
+    }
   }
 
   login() {

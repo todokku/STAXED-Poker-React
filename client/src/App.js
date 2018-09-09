@@ -39,9 +39,12 @@ class App extends Component {
     this.props.auth.logout();
   }
 
+  
+
+
   render() {
     // const { isAuthenticated, userHasScopes } = this.props.auth;
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated, getUniqueId, adminId } = this.props.auth;
 
     return (
       <div className="header-nav">
@@ -83,7 +86,7 @@ class App extends Component {
                 </NavItem>
               )}  */}
 
-              {isAuthenticated() && ( // remove this ( after uncommenting below.
+              {isAuthenticated() &&  getUniqueId() === adminId  && ( // remove this ( after uncommenting below.
                 // userHasScopes(["write:messages"]) && (
                 <NavItem
                   className="btn-margin"
