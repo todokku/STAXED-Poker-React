@@ -35,13 +35,13 @@ class App extends Component {
               Home
             </Button>
 
-            <Button
+            {/* <Button
               bsStyle="primary"
               className="btn-margin"
               onClick={this.goTo.bind(this, "main")}
             >
               Main
-            </Button>
+            </Button> */}
 
             {!isAuthenticated() && (
               <Button
@@ -74,8 +74,8 @@ class App extends Component {
               </Button>
             )}
 
-            {isAuthenticated() &&
-              userHasScopes(["write:messages"]) && (
+            {isAuthenticated() && (
+              // userHasScopes(["write:messages"]) && (
                 <Button
                   bsStyle="primary"
                   className="btn-margin"

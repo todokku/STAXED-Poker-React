@@ -18,23 +18,8 @@ class Profile extends Component {
       loading: true
     }
     this.checkGrav = this.checkGrav.bind(this);
-    // this.matchUserId = this.matchUserId.bind(this);
-  }
-
-  // By the time componentDidMount is called, the component has been rendered once.
-  // Consider logic from SingleItem. match email instead of :id?
-
-  // 1) get userProfile Object - then user.email - from this.props.auth
-  //    done for me already and stored in this.state.profile object.
-  // 2) From profile object, set user.email/googleNickname in state. 
-  // 3) using the userEmail in state, Match "users" item that regex matches the userEmail or googleUserName with database entries.
-
-  // 4) set Matched "users"-item.id to userId in state.
-  // 5) Use userId to make a /user/:id request.
-  // 6) set response.data to user: {} in state. 
-  componentDidMount() {
-    console.log('component did finally mount');
-  }
+    // this.matchEmail = this.matchEmail.bind(this);
+  }  
 
   // moved initial setState to constructor above.
   componentWillMount() {
@@ -45,20 +30,18 @@ class Profile extends Component {
 
     if (!userProfile) {
       getProfile((err, profile) => {
-        console.log(profile);
-        // normal signins
         if (this.checkGrav(profile.picture) === true) {
           profile.picture = defaultPicture;
           this.setState({ profile, emailString: profile.name });
           // this.matchEmail(this.state.emailString)
           // console.log(this.state);
         } 
-        // google signins return usernames as "profile.nickname" (keolazy1).
         else if (this.checkGrav(profile.picture) === false) {
-          console.log("No grav... ");
+          console.log("This must be a gmail account... ");
           this.setState({ profile, emailString: profile.nickname });
           this.matchEmail(this.state.emailString)
-          console.log(this.state);
+          // Now I need userId to make another fetch.
+          this.getUser(this.state.userId) 
         } else {
           console.log("if and else if, didn't happen....");
           this.setState({ profile });
@@ -75,39 +58,58 @@ class Profile extends Component {
         loading: false,
         users: response.data
       })
-      console.log(this.state.emailString)
       this.matchEmail(this.state.emailString);
-      console.log(this.state) // users{3} is populated. emailString filled.
-      // this.matchEmail(this.state.emailString);
+      console.log(this.state);
+      // Consider doing another fetch here.
     })
 
   }
 
-  // checks to see if profile.picture contains a bad stock photo.
+  componentDidMount() {
+    // axios.get(`${API_URL}/user/${this.state.userId}`)
+    //   .then((response) => {
+    //     if(!response) {
+    //       throw Error("Network Request Failed")
+    //     }
+    //     return response.data
+    //   })
+    //   .then(data => data.json())
+    //   .then(data => {
+    //     this.setState({
+    //       user: data
+    //     })
+    //   })
+  }
+
   checkGrav(str) {
     let containsGrav = /grav/.test(str);
     // console.log(containsGrav);
     return containsGrav;
   }
- 
-  // string is going to be this.state.emailString.
-  // will see if test passes the match with input. 
+  
   matchEmail(string) {
     console.log(string);
     const usersArray = this.state.users;
-    console.log(usersArray) // Array(3)
     for(let i = 0; i < usersArray.length; i++) {
       let userEmail = usersArray[i].email;
       let re = new RegExp(string, 'gi');
       // console.log(userEmail.match(re));
       if(userEmail.match(re)) {
-        console.log('YAY! found an email match with ' + usersArray[i].email)
+        console.log('Found emailString match with ' + usersArray[i].email)
         this.setState({ userId: usersArray[i].id})
       }
-      else {
-        console.log("Sorry, no matches");
-      }
     }
+  }
+
+  getUser(input) {
+    console.log('getUser being called')
+    const id = input 
+    axios.get(`${API_URL}/user/${id}`)
+    .then((response) => {
+      console.log(response.data); // returns (1) user object that matches auth.
+      this.setState( { user: response.data})
+    })
+    .catch(error => console.log(error))
   }
 
   render() {

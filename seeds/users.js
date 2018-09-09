@@ -11,18 +11,26 @@ exports.seed = function(knex, Promise) {
       balanceHours: 10,
       qualifierHours: 25,
       access: 'admin',
-      checkedIn: false
+      checkedIn: false,
+      username: '',
+      nickname: '',
+      picture: '',
+      user_id: undefined
     },
     {
       id: 2,
-      email: "stephenpoker@gmail.com",
+      email: "steve@zenithservices.net",
       // hashed_pw: bcrypt.hashSync('stephen', 10);
-      name: "Stephen Poker",
+      name: "Stephen Graham",
       phone: "210-666-6666",
       balanceHours: 300,
       qualifierHours: 9999,
-      access: 'member',
-      checkedIn: false
+      access: 'admin',
+      checkedIn: false,
+      username: '',
+      nickname: '',
+      picture: '',
+      user_id: undefined
     },
     {
       id: 3,
@@ -33,7 +41,11 @@ exports.seed = function(knex, Promise) {
       balanceHours: 10,
       qualifierHours: 25,
       access: 'member',
-      checkedIn: false
+      checkedIn: false,
+      username: '',
+      nickname: '',
+      picture: '',
+      user_id: undefined
     },
     {
       id: 4,
@@ -44,6 +56,21 @@ exports.seed = function(knex, Promise) {
       balanceHours: 6,
       qualifierHours: 30,
       access: 'admin',
+      checkedIn: false,
+      username: '',
+      nickname: '',
+      picture: '',
+      user_id: undefined
+    },
+    {
+      id: 5,
+      email: "micwhi@gmail.com",
+      // hashed_pw: bcrypt.hashSync('michael', 10);
+      name: "Michelangelo Westchire",
+      phone: "777-777-777",
+      balanceHours: 4,
+      qualifierHours: 15,
+      access: 'member',
       checkedIn: false
     }
   ])
