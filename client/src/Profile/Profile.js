@@ -113,7 +113,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { profile } = this.state;
+    const { profile, user } = this.state;
     return (
       <body>
         <div className="profile">
@@ -130,13 +130,13 @@ class Profile extends Component {
                 <div className="userbalance">
                   <i className="far fa-clock">
                     {" "}
-                    Balance {profile.balanceHours}
+                    Balance {user.balanceHours}
                   </i>
                 </div>
 
                 <div className="userqualifier">
                   {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
-                  Qualifier {profile.qualifierHours}
+                  Qualifier {user.qualifierHours}
                 </div>
               </div>
               {/* </div> */}

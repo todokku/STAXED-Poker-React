@@ -31,6 +31,18 @@ const checkJwt = jwt({
 const checkScopes = jwtAuthz([ 'read:messages' ])
 const checkScopesAdmin = jwtAuthz([ 'write:messages' ])
 
+app.get('/', checkJwt, checkScopesAdmin, (req,res) => {
+	db.select()
+	.from('users')
+	.orderBy('id')
+	.then((data) => {
+		res.send(data)
+	})
+})
+
+
+
+// Old user/todo routing.
 router.get('/', function(req, res) {
 	db.select()
 	.from('users')
