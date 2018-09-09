@@ -3,7 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-const SingleUserList = ({ onEdit, history, id, email, balanceHours, access, qualifierHours, phone, checkedIn }) => {
+const SingleUserList = ({ onEdit, name, history, id, email, balanceHours, access, qualifierHours, phone, checkedIn }) => {
   // Insert some Handler to AutoRefresh Page after updateState?
   return (
     <div>
@@ -19,8 +19,11 @@ const SingleUserList = ({ onEdit, history, id, email, balanceHours, access, qual
           </div>
 
           <div className="card-text">
+            Name: {name}
+          </div>
+
+          <div className="card-text">
             Balance Hours: {balanceHours}
-            
           </div>
 
           <div className="card-text">

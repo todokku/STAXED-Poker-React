@@ -37,7 +37,7 @@ class SingleUser extends Component {
       );
     }
     return (
-      <UserCard email={this.state.user.email} access={this.state.user.access}
+      <UserCard email={this.state.user.email} name={this.state.user.name} access={this.state.user.access}
       balanceHours={this.state.user.balanceHours} qualifierHours={this.state.user.qualifierHours} id={this.state.user.id} phone={this.state.user.phone} checkedIn={this.state.user.checkedIn}/>
     );
   }
