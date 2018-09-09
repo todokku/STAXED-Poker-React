@@ -8,8 +8,7 @@ class SingleUser extends Component {
     super(props);
     this.state = {
       loading: true,
-      user: {},
-      _isMounted: false
+      user: {}
     };
   }
 
@@ -20,12 +19,10 @@ class SingleUser extends Component {
   componentWillMount() {
     const id = this.props.match.params.id;
     axios.get(`${API_URL}/control/${id}`).then((res) => {
-      if(this.state._isMounted === true) {
         this.setState({
           loading: false,
           user: res.data
         });
-      }
     });
   }
 

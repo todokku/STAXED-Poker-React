@@ -64,7 +64,7 @@ app.get('/users', (req, res) => {
 	})
 })
 
-app.get('/control/users')
+// app.get('/control/users')
 
 app.get('/control/:id', (req, res) =>
 	db('users')

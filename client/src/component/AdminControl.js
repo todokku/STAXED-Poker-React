@@ -17,7 +17,7 @@ class AdminControl extends Component {
 
 
 componentDidMount() {
-  axios.get(`${API_URL}/admin`)
+  axios.get(`${API_URL}/admin/users`)
   .then(response => {
     console.log(response)
       this.setState({
