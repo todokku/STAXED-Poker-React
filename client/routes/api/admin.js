@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const db = require('../../db')
 const jwt = require('express-jwt')
 const jwtAuthz = require('express-jwt-authz')
 const jwksRsa = require('jwks-rsa')
@@ -28,11 +29,53 @@ const checkJwt = jwt({
 
 const checkScopesAdmin = jwtAuthz([ 'write:messages' ])
 
-app.post('/', checkJwt, checkScopesAdmin, function(req, res) {
-	res.json({ message: 'Hello from an admin endpoint! You need to be authenticated and have a scope of write:messages to see this.' })
+// Original admin post route.
+// app.post('/', checkJwt, checkScopesAdmin, function(req, res) {
+// 	res.json({ message: 'Hello from an admin endpoint! You need to be authenticated and have a scope of write:messages to see this.' })
+// })
+
+// app.get('/', (req, res) => {
+// 	res.json({message: 'Hello from an admin endpoint! Here you can see admin posted messages'})
+// })
+
+app.get('/', (req, res) => {
+	db.select()
+	.from('admins')
+	.orderBy('id')
+	.then((data) => {
+		res.send(data)
+	})
 })
 
-// 
+// app.post('/', (req, res) => {
+// 	res.json({ message: 'Hello from an admin endpoint! You need to be authenticated and have a scope of write:messages to see this.' })
+// })
+
+// app.get('/messages', function(req, res) {
+// 	res.json({ message: 'Hello from an admin endpoint! Here you can see admin posted messages' })
+// })
+
+// get messages in admin database.
+// app.get('/messages', function(req, res) {
+// 	db.select()
+// 	.from('admins')
+// 	.orderBy('id')
+// 	.then(function(data) {
+// 		res.send(data)
+// 	})
+// })
+
+app.post('/messages'), (req, res) => {
+	db.insert(req.body)
+	.returning('*')
+	.into('admins')
+	.then((data) => {
+		res.send(data)
+	})
+}
+
+
+// Admin get route coded with Auth0 functions.
 // app.get('/', checkJwt, checkScopesAdmin, (req,res) => {
 // 	db.select()
 // 	.from('users')

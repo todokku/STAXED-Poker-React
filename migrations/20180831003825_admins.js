@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
 		table.string('phone');
 		table.string('adminType'),
 		table.string('access');
+		table.string('message');
 		table.timestamps(true, true);
 	});
 };

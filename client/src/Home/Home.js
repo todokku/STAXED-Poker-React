@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Jumbotron, Button } from "react-bootstrap";
+// import { Jumbotron, Button } from "react-bootstrap";
 import "../Home/Home.css";
 
 class Home extends Component {
   render() {
-    const { isAuthenticated, login } = this.props.auth;
+    // const { isAuthenticated, login } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
     return (
       <body>
         <div className="jumbotron vertical-center container-fluid">
