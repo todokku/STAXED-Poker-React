@@ -17,7 +17,8 @@ import SingleUser from './component/SingleUser';
 
 const auth = new Auth();
 
-// Test if payload can arrive here so we can pass it down to <Main /> in '/test'
+// Make payload arrive here so we can pass it down to all neccessary components. 
+// Consider making App.js handle all the profile requests.
 
 const handleAuthentication = ({ location }) => {
   if (/access_token|id_token|error/.test(location.hash)) {
@@ -25,11 +26,11 @@ const handleAuthentication = ({ location }) => {
   }
 };
 
-// Test if payload can arrive here so we can pass it down to <Main /> in '/test'
-// Functional Based Component. Can I squeeze some props from 'api/user' in here???
-export const makeMainRoutes = () => {
+
+export const makeMainRoutes = (props) => {
   return (
     <div>
+      {this.profile}
       <Router history={history}>
         <div>
           <Route path="/" render={props => <App auth={auth} {...props} />} />

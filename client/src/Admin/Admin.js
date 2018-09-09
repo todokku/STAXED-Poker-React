@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import { API_URL } from "./../constants";
 import axios from "axios";
 import "../Admin/Admin.css";
@@ -12,13 +12,7 @@ class Admin extends Component {
   // this.updateState = this.updateState.bind(this);
 
   componentWillMount() {
-    this.setState({ message: "", admins: {}, users: {}, viewUsers: false });
-  }
-
-  onViewUsers() {
-    this.setState({
-      viewUsers: !this.state.viewUsers
-    });
+    this.setState({ message: "", admins: {}, users: {} });
   }
 
   adminPing() {
@@ -73,9 +67,6 @@ class Admin extends Component {
               </Button>
               <Button className="btn btn-secondary" onClick={this.getAdmins.bind(this)}>
                 Get Admins 
-              </Button> */}
-              {/* <Button className="btn btn-secondary" onClick={this.onViewUsers.bind(this)}>
-                Toggle View Users 
               </Button> */}
 
               <Link to="/admin/control">Manage Users</Link>

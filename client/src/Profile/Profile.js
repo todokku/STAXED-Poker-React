@@ -14,7 +14,7 @@ class Profile extends Component {
       users: {},
       user: {},
       emailString: "",
-      userId: null,
+      userId: undefined,
       loading: true,
       isMounted: ''
     };
@@ -126,7 +126,13 @@ class Profile extends Component {
                   <i className="far fa-clock"> Balance: {user.balanceHours}</i>
                 </div>
                 <div className="userqualifier">
+                  {/* <i className="far fa-heart"> */}
+                  {/* <i className="far fa-bookmark"> */}
+                  {/* <i className="far fa-bell"> */}
                   <i className="far fa-thumbs-up">
+                    {" "}
+                    {/* <button class="pulse-button"> */}
+                    {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
                     Qualifier: {user.qualifierHours}
                   </i>
                   {/* </button> */}

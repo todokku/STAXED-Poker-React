@@ -3,7 +3,30 @@ import React, { Component } from "react";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import "./App.css";
 
+// When user logins and arrives at App, can I post user?
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      profile: {}
+    }
+  }
+  // If I retrieve profile: {} from auth0 here, do I change the NavItems to <Links>?
+
+  postNewUser(userProfile) {
+    console.log(userProfile);
+    if(!userProfile) {
+      this.getProfile( (err, profile) => {
+        this.setState({ profile })
+      })
+    } else {
+      this.setState({ profile: userProfile })
+    }
+    this.goTo.bind(this, "profile")
+  }
+
+
   goTo(route) {
     this.props.history.replace(`/${route}`);
   }
@@ -39,21 +62,14 @@ class App extends Component {
                 Home
               </NavItem>
 
-              {isAuthenticated() ? (
+              {isAuthenticated() && (
                 <NavItem
                   className="btn-margin"
                   onClick={this.goTo.bind(this, "profile")}
                 >
                   Profile
                 </NavItem>
-              ) : (
-                <NavItem
-                  className="btn-margin"
-                  onClick={this.goTo.bind(this, "profile")}
-                >
-                  Profile
-                </NavItem>
-              )}
+              ) }
 
               {/* {isAuthenticated() && (
                 <NavItem>

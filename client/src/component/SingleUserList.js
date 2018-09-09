@@ -3,8 +3,8 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-// Incorporate checkedIn attribute for users.
 const SingleUserList = ({ onEdit, history, id, email, balanceHours, access, qualifierHours, phone, checkedIn }) => {
+  // Insert some Handler to AutoRefresh Page after updateState?
   return (
     <div>
       <div><h6>Checked In = Green - Checked out = Red</h6></div>
@@ -25,6 +25,10 @@ const SingleUserList = ({ onEdit, history, id, email, balanceHours, access, qual
 
           <div className="card-text">
           Qualifier Hours: {qualifierHours}
+          </div>
+
+          <div className="card-text">
+          CheckIn Status: {checkedIn === true ? 'Yes' : 'No'}
           </div>
 
           <div className="d-flex justify-content-between align-items-end mt-5">

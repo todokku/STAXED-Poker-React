@@ -79,6 +79,18 @@ export default class Auth {
     });
   }
 
+    // Make Post auth0 user to database function here.
+    postNewUser(userProfile) {
+      console.log(userProfile);
+      // if(!userProfile) {
+      //   this.getProfile( (err, profile) => {
+      //     this.setState({ profile })
+      //   })
+      // } else {
+      //   this.setState({ profile: userProfile })
+      // }
+    }
+
   logout() {
     // Clear access token and ID token from local storage
     localStorage.removeItem("access_token");
@@ -104,6 +116,9 @@ export default class Auth {
     return scopes.every(scope => grantedScopes.includes(scope));
   }
 
+  // getUserFromDB(email) {
+  //   const user = this.getUserFromDB
+  // }
 
 
 }

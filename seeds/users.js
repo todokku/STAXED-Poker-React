@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
       qualifierHours: 25,
       access: 'admin',
       checkedIn: false,
-      username: '',
+      username: 'nathan.keolasy',
       nickname: '',
       picture: '',
       user_id: undefined
@@ -27,7 +27,7 @@ exports.seed = function(knex, Promise) {
       qualifierHours: 9999,
       access: 'admin',
       checkedIn: false,
-      username: '',
+      username: 'steve',
       nickname: '',
       picture: '',
       user_id: undefined
@@ -42,7 +42,7 @@ exports.seed = function(knex, Promise) {
       qualifierHours: 25,
       access: 'member',
       checkedIn: false,
-      username: '',
+      username: 'michaelwhitzel',
       nickname: '',
       picture: '',
       user_id: undefined
@@ -57,7 +57,7 @@ exports.seed = function(knex, Promise) {
       qualifierHours: 30,
       access: 'member',
       checkedIn: false,
-      username: '',
+      username: 'keolazy1',
       nickname: '',
       picture: '',
       user_id: undefined
@@ -71,7 +71,11 @@ exports.seed = function(knex, Promise) {
       balanceHours: 4,
       qualifierHours: 15,
       access: 'member',
-      checkedIn: false
+      checkedIn: false,
+      username: 'michwhi',
+      nickname: '',
+      picture: '',
+      user_id: undefined
     }
   ])
 };

@@ -36,7 +36,7 @@ class SingleUserEdit extends Component {
     const { id, history } = this.props;
     //We're editing
     if (id) {
-      axios.put(`${API_URL}/user/${id}`, {
+      axios.patch(`${API_URL}/user/${id}`, {
           email: email,
           name: name,
           phone: phone,
@@ -50,7 +50,7 @@ class SingleUserEdit extends Component {
       });
     } else {
       //we're not
-      axios.post('${API_URL}/user', { email: email, balanceHours: balanceHours, access: access, qualifierHours: qualifierHours, phone: phone }).then(() => {
+      axios.post(`${API_URL}/user`, { email: email, balanceHours: balanceHours, access: access, qualifierHours: qualifierHours, phone: phone }).then(() => {
         history.push('/')
       });
     }
