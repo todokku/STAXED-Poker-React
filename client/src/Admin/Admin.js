@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { API_URL } from "./../constants";
 import axios from "axios";
 import "../Admin/Admin.css";
-import AdminControl from './AdminControl';
+import AdminControl from '../component/AdminControl';
 
 class Admin extends Component {
   // this.onEdit = this.onEdit.bind(this);
@@ -18,10 +18,6 @@ class Admin extends Component {
       viewUsers: !this.state.viewUsers
     })
   }
-
-  // updateState(){
-
-  // }
 
   adminPing() {
     const { getAccessToken } = this.props.auth;

@@ -21,20 +21,6 @@ class Profile extends Component {
     // this.matchUserId = this.matchUserId.bind(this);
   }
 
-  // By the time componentDidMount is called, the component has been rendered once.
-  // Consider logic from SingleItem. match email instead of :id?
-
-  // 1) get userProfile Object - then user.email - from this.props.auth
-  //    done for me already and stored in this.state.profile object.
-  // 2) From profile object, set user.email/googleNickname in state.
-  // 3) using the userEmail in state, Match "users" item that regex matches the userEmail or googleUserName with database entries.
-
-  // 4) set Matched "users"-item.id to userId in state.
-  // 5) Use userId to make a /user/:id request.
-  // 6) set response.data to user: {} in state.
-  componentDidMount() {
-    console.log("component did finally mount");
-  }
 
   // moved initial setState to constructor above.
   componentWillMount() {
@@ -113,7 +99,7 @@ class Profile extends Component {
   render() {
     const { profile, user } = this.state;
     return (
-      <body>
+      <div>
         <div className="profile">
           <img src={profile.picture} className="profile-default" alt="profile"/>
 
@@ -137,7 +123,7 @@ class Profile extends Component {
                   {/* <i class="far fa-heart"> */}
                   {/* <i class="far fa-bookmark"> */}
                   {/* <i class="far fa-bell"> */}
-                  <i class="far fa-thumbs-up">
+                  <i className="far fa-thumbs-up">
                     {" "}
                     {/* <button class="pulse-button"> */}
                     {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
@@ -150,7 +136,7 @@ class Profile extends Component {
             </ListGroup>
           </div>
         </div>
-      </body>
+      </div>
     );
   }
 }
