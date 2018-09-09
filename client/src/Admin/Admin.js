@@ -3,10 +3,21 @@ import { Button } from "react-bootstrap";
 import { API_URL } from "./../constants";
 import axios from "axios";
 import "../Admin/Admin.css";
+import AdminControl from "../component/AdminControl";
+// import ItemsBody from '../component/ItemsBody'
 
 class Admin extends Component {
+  // this.onEdit = this.onEdit.bind(this);
+  // this.updateState = this.updateState.bind(this);
+
   componentWillMount() {
-    this.setState({ message: "", admins: {} });
+    this.setState({ message: "", admins: {}, users: {}, viewUsers: false });
+  }
+
+  onViewUsers() {
+    this.setState({
+      viewUsers: !this.state.viewUsers
+    });
   }
 
   adminPing() {
@@ -25,13 +36,25 @@ class Admin extends Component {
     });
   }
 
-  getUsers() {}
+  goTo(route) {
+    this.props.history.replace(`/${route}`);
+  }
 
   render() {
-    const { message } = this.state;
+    const { message, users, admins } = this.state;
+    if (this.state.viewUsers) {
+      return (
+        <AdminControl
+          message={message}
+          users={users}
+          admins={admins}
+          testProps="if you can see this, props passed succesfully!"
+        />
+      );
+    }
+
     return (
       <div>
-        {/* <body> */}
         <div className="jumbotron vertical-center container-fluid">
           <div className="container text-center">
             <div className="container">
@@ -57,12 +80,17 @@ class Admin extends Component {
               >
                 Get Admins
               </Button>
+              <Button
+                className="btn btn-secondary"
+                onClick={this.onViewUsers.bind(this)}
+              >
+                Toggle View Users
+              </Button>
 
               <h2>{message}</h2>
             </div>
           </div>
         </div>
-        {/* </body> */}
       </div>
     );
   }

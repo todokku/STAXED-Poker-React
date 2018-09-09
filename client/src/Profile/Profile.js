@@ -21,20 +21,6 @@ class Profile extends Component {
     // this.matchUserId = this.matchUserId.bind(this);
   }
 
-  // By the time componentDidMount is called, the component has been rendered once.
-  // Consider logic from SingleItem. match email instead of :id?
-
-  // 1) get userProfile Object - then user.email - from this.props.auth
-  //    done for me already and stored in this.state.profile object.
-  // 2) From profile object, set user.email/googleNickname in state.
-  // 3) using the userEmail in state, Match "users" item that regex matches the userEmail or googleUserName with database entries.
-
-  // 4) set Matched "users"-item.id to userId in state.
-  // 5) Use userId to make a /user/:id request.
-  // 6) set response.data to user: {} in state.
-  componentDidMount() {
-    console.log("component did finally mount");
-  }
 
   // moved initial setState to constructor above.
   componentWillMount() {
@@ -139,9 +125,15 @@ class Profile extends Component {
                   <i className="far fa-clock"> Balance: {user.balanceHours}</i>
                 </div>
                 <div className="userqualifier">
+<<<<<<< HEAD
                   {/* <i className="far fa-heart"> */}
                   {/* <i className="far fa-bookmark"> */}
                   {/* <i className="far fa-bell"> */}
+=======
+                  {/* <i class="far fa-heart"> */}
+                  {/* <i class="far fa-bookmark"> */}
+                  {/* <i class="far fa-bell"> */}
+>>>>>>> 389eb392edc288ae01ac1984d8ba5ac5505ad34c
                   <i className="far fa-thumbs-up">
                     {" "}
                     {/* <button class="pulse-button"> */}

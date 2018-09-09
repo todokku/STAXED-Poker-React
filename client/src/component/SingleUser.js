@@ -1,24 +1,36 @@
 import React, { Component } from 'react';
+import { API_URL } from "../constants";
 import axios from 'axios';
 import UserCard from './UserCard';
 
-class SingleItem extends Component {
+class SingleUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
-      user: {} // {...user}
+      user: {},
+      _isMounted: false
     };
+  }
+
+  componentDidMount() {
+    this.setState({ _isMounted: true})
   }
 
   componentWillMount() {
     const id = this.props.match.params.id;
-    axios.get(`/api/user/${id}`).then((res) => {
-      this.setState({
-        loading: false,
-        user: res.data
-      });
+    axios.get(`${API_URL}/admin/control/${id}`).then((res) => {
+      if(this.state._isMounted === true) {
+        this.setState({
+          loading: false,
+          user: res.data
+        });
+      }
     });
+  }
+
+  componentWillUnmount() {
+    this.setState({ _isMounted: false})
   }
 
   render() {
@@ -34,4 +46,4 @@ class SingleItem extends Component {
   }
 }
 
-export default SingleItem;
+export default SingleUser;

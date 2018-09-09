@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 // const bcrypt = require('bcrypt');
 
+=======
+>>>>>>> 389eb392edc288ae01ac1984d8ba5ac5505ad34c
 exports.seed = function(knex, Promise) {
   return knex("admins").insert([
     {
