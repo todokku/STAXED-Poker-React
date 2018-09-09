@@ -40,8 +40,6 @@ class App extends Component {
   }
 
   
-
-
   render() {
     // const { isAuthenticated, userHasScopes } = this.props.auth;
     const { isAuthenticated, getUniqueId, adminId } = this.props.auth;
@@ -49,21 +47,23 @@ class App extends Component {
     return (
       <div className="header-nav">
         <Navbar inverse fluid collapseOnSelect>
+
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/home">Stacked App</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-
+  
+      
           <Navbar.Collapse>
             <Nav className="navbar-collapse" pullRight>
               <NavItem
                 className="btn-margin"
                 onClick={this.goTo.bind(this, "home")}
               >
-                Home
-              </NavItem>
+                Home - (Public View - No Signin required)
+              </NavItem> 
 
               {isAuthenticated() && (
                 <NavItem

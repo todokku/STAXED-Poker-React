@@ -15,7 +15,6 @@ class AdminControl extends Component {
     };
   }
 
-
 componentDidMount() {
   axios.get(`${API_URL}/admin/users`)
   .then(response => {
@@ -43,22 +42,14 @@ renderUsers() {
     );
     });
   }
-
-// handleButtonClick = async () => {
-//   const response = await axios.get(`${API_URL}/control/users`)
-//   if(this._isMounted) {
-//     console.log("component is mounted, so users being fetched and stored")
-//     this.setState({ user: response.data, loading: false })
-//   }
-// }
   
 componentWillUnmount() {
   this._isMounted = false
 }
           
   render() {
-    // if(this.state.loading)
-    // return <div>Component Loading...</div>
+    if(this.state.loading)
+    return <div>Component Loading...</div>
 
     return (
       <div>

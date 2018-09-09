@@ -23,7 +23,8 @@ class Profile extends Component {
   }
 
 
-  // moved initial setState to constructor above.
+  // Try version where helper functions return values to be stored variables
+  // and setState isn't called till the very end.
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
     // Imported from line 6
@@ -36,6 +37,7 @@ class Profile extends Component {
           profile.picture = defaultPicture;
           this.setState({ profile, emailString: profile.name });
           this.matchEmail(this.state.emailString);
+          this.getUser(this.state.userId)
           // console.log(this.state);
         }
         // google signins return usernames as "profile.nickname" (keolazy1).
@@ -65,6 +67,9 @@ class Profile extends Component {
       console.log(this.state); // users{3} is populated. emailString filled.
       // this.matchEmail(this.state.emailString);
     });
+
+
+
   }
 
   checkGrav(str) {
@@ -103,6 +108,13 @@ class Profile extends Component {
 
   render() {
     const { profile, user } = this.state;
+    // Handle conditional render code below
+    // if(!this.state.user.balanceHours) {
+    //   return (
+    //     <div>Loading... If stats do not render, please try refreshing. {profile.name} - {user.balanceHours}</div>
+    //   )
+    // }
+
     return (
       <div>
         <div className="profile">

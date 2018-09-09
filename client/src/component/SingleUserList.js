@@ -8,10 +8,10 @@ const SingleUserList = ({ onEdit, name, history, id, email, balanceHours, access
   return (
     <div>
       <div><h6>Checked In = Green - Checked out = Red</h6></div>
-      <div className={`card ${checkedIn ? 'bg-success' : 'bg-danger'} text-white`}>
+      <div className={`card ${checkedIn === true ? 'bg-success' : 'bg-danger'} text-white`}>
         <div className="card-block">
           <div className="card-title">
-            <h4>{email}</h4>
+            <h4>Edit User</h4>
           </div>
 
           <div className="card-text">
@@ -19,7 +19,13 @@ const SingleUserList = ({ onEdit, name, history, id, email, balanceHours, access
           </div>
 
           <div className="card-text">
-            Name: {name}
+            Name: {name} 
+          </div>     
+          <div className="card-text">
+            Email: {email}
+          </div>
+          <div className="card-text">
+            Phone: {phone}
           </div>
 
           <div className="card-text">

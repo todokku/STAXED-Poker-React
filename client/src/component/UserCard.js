@@ -9,6 +9,8 @@ class UserCard extends Component {
       editing: false,
       id: props.id,
       name: props.name,
+      email: props.email,
+      phone: props.phone,
       access: props.access,
       balanceHours: props.balanceHours,
       qualifierHours: props.qualifierHours,
