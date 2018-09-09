@@ -9,6 +9,7 @@ import Admin from "./Admin/Admin";
 import Callback from "./Callback/Callback";
 import Auth from "./Auth/Auth";
 import history from "./history";
+import AdminControl from './Admin/AdminControl';
 // import Main from "./component/Main";
 // import { API_URL } from "./constants";
 // import axios from "axios";
@@ -77,12 +78,24 @@ export const makeMainRoutes = () => {
           />
 
           <Route
+            path="/admin/control"
+            render={props => 
+              !auth.isAuthenticated() ? (
+                <Redirect to="/home" />
+              ) : (
+                <AdminControl auth={auth} {...props} />
+              )
+            }
+          />
+
+          <Route
             path="/callback"
             render={props => {
               handleAuthentication(props);
               return <Callback {...props} />;
             }}
           />
+
         </div>
       </Router>
     </div>

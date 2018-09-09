@@ -47,13 +47,18 @@ app.get('/', (req, res) => {
 	})
 })
 
-// app.post('/', (req, res) => {
-// 	res.json({ message: 'Hello from an admin endpoint! You need to be authenticated and have a scope of write:messages to see this.' })
-// })
+app.get('/users', (req, res) => {
+	db.select()
+	.from('users')
+	.orderBy('id')
+	.then((data) => {
+		res.send(data)
+	})
+})
 
-// app.get('/messages', function(req, res) {
-// 	res.json({ message: 'Hello from an admin endpoint! Here you can see admin posted messages' })
-// })
+app.post('/', (req, res) => {
+	res.json({ message: 'Hello from an admin endpoint! You need to be authenticated and have a scope of write:messages to see this.' })
+})
 
 // get messages in admin database.
 // app.get('/messages', function(req, res) {
