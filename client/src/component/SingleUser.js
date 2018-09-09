@@ -13,13 +13,13 @@ class SingleUser extends Component {
     };
   }
 
-  componentDidMount() {
-    this.setState({ _isMounted: true})
-  }
+  // componentDidMount() {
+  //   this.setState({ _isMounted: true})
+  // }
 
   componentWillMount() {
     const id = this.props.match.params.id;
-    axios.get(`${API_URL}/admin/control/${id}`).then((res) => {
+    axios.get(`${API_URL}/control/${id}`).then((res) => {
       if(this.state._isMounted === true) {
         this.setState({
           loading: false,
@@ -29,9 +29,9 @@ class SingleUser extends Component {
     });
   }
 
-  componentWillUnmount() {
-    this.setState({ _isMounted: false})
-  }
+  // componentWillUnmount() {
+  //   this.setState({ _isMounted: false})
+  // }
 
   render() {
     if (this.state.loading) {

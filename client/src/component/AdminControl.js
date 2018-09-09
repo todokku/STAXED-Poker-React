@@ -11,14 +11,21 @@ import "../App.css";
 class AdminControl extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      users: {},
-      loading: true
+      loading: true,
+      users: {}
     };
   }
 
-  // _isMounted = false;
+  componentDidMount() {
+    axios.get(`${API_URL}/admin`).then(response => {
+      console.log(response);
+      this.setState({
+        loading: false,
+        users: response.data
+      });
+    });
+  }
 
   renderUsers() {
     return _.map(this.state.users, user => {
@@ -36,27 +43,13 @@ class AdminControl extends Component {
     });
   }
 
-  handleButtonClick = async () => {
-    const response = await axios.get(`${API_URL}/admin/users`);
-    if (this._isMounted) {
-      console.log("component is mounted, so users being fetched and stored");
-      this.setState({ user: response.data, loading: false });
-    }
-  };
-
-  componentWillMount() {
-    axios.get(`${API_URL}/admin/users`).then(response => {
-      console.log(response);
-      this.setState({
-        loading: false,
-        users: response.data
-      });
-    });
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-  }
+  // handleButtonClick = async () => {
+  //   const response = await axios.get(`${API_URL}/control/users`)
+  //   if(this._isMounted) {
+  //     console.log("component is mounted, so users being fetched and stored")
+  //     this.setState({ user: response.data, loading: false })
+  //   }
+  // }
 
   componentWillUnmount() {
     this._isMounted = false;

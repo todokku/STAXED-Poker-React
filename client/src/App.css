@@ -4,9 +4,20 @@
 
 .header-nav {
   overflow: visible !important;
-  position: relative;
+  position: fixed;
   z-index: 10000;
+  width: 100%;
+  margin-bottom: 60px;
 }
+
+/* @media (min-width:320px)  { 
+  .header-nav {
+    overflow: visible !important;
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    margin-bottom: 60px;
+ } */
 
 /* .collapse {
   margin: 0 auto;
@@ -29,7 +40,7 @@ li {
 .footer {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
