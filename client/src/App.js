@@ -1,6 +1,6 @@
 // App.js is basically the NavBar
 import React, { Component } from "react";
-import { Nav, Navbar, NavItem, Button } from "react-bootstrap";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
 import "./App.css";
 
 class App extends Component {
@@ -17,7 +17,8 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthenticated, userHasScopes } = this.props.auth;
+    // const { isAuthenticated, userHasScopes } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <div className="header-nav">
@@ -28,39 +29,29 @@ class App extends Component {
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav class="navbar-collapse" pullRight>
-              <NavItem>
-                <li
-                  bsStyle="primary"
-                  className="btn-margin"
-                  onClick={this.goTo.bind(this, "home")}
-                >
-                  Home
-                </li>
-              </NavItem>
-              {!isAuthenticated() && (
-                <NavItem>
-                  <li
-                    id="qsLoginBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.login.bind(this)}
-                  >
-                    Log In
-                  </li>
-                </NavItem>
-              )}
 
-              {isAuthenticated() && (
-                <NavItem>
-                  <li
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.goTo.bind(this, "profile")}
-                  >
-                    Profile
-                  </li>
+          <Navbar.Collapse>
+            <Nav className="navbar-collapse" pullRight>
+              <NavItem
+                className="btn-margin"
+                onClick={this.goTo.bind(this, "home")}
+              >
+                Home
+              </NavItem>
+
+              {isAuthenticated() ? (
+                <NavItem
+                  className="btn-margin"
+                  onClick={this.goTo.bind(this, "profile")}
+                >
+                  Profile
+                </NavItem>
+              ) : (
+                <NavItem
+                  className="btn-margin"
+                  onClick={this.goTo.bind(this, "profile")}
+                >
+                  Profile
                 </NavItem>
               )}
 
@@ -74,37 +65,40 @@ class App extends Component {
                     Ping
                   </li>
                 </NavItem>
-              )} */}
+              )}  */}
 
               {isAuthenticated() && ( // remove this ( after uncommenting below.
                 // userHasScopes(["write:messages"]) && (
-                <NavItem>
-                  <li
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.goTo.bind(this, "admin")}
-                  >
-                    Admin
-                  </li>
+                <NavItem
+                  className="btn-margin"
+                  onClick={this.goTo.bind(this, "admin")}
+                >
+                  Admin
                 </NavItem>
               )}
 
               {isAuthenticated() && (
-                <NavItem>
-                  <li
-                    id="qsLogoutBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </li>
+                <NavItem
+                  id="qsLogoutBtn"
+                  className="btn-margin"
+                  onClick={this.logout.bind(this)}
+                >
+                  Log Out
+                </NavItem>
+              )}
+              {!isAuthenticated() && (
+                <NavItem
+                  id="qsLoginBtn"
+                  className="btn-margin"
+                  onClick={this.login.bind(this)}
+                >
+                  Log In
                 </NavItem>
               )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div class="footer">
+        <div className="footer">
           <div className="footer-content">
             2018 ©{/* <div className="icon-spacing"> */}
             {/* <i class="fab fa-twitter-square" />

@@ -80,22 +80,6 @@ class Profile extends Component {
     });
   }
 
-  componentDidMount() {
-    // axios.get(`${API_URL}/user/${this.state.userId}`)
-    //   .then((response) => {
-    //     if(!response) {
-    //       throw Error("Network Request Failed")
-    //     }
-    //     return response.data
-    //   })
-    //   .then(data => data.json())
-    //   .then(data => {
-    //     this.setState({
-    //       user: data
-    //     })
-    //   })
-  }
-
   checkGrav(str) {
     let containsGrav = /grav/.test(str);
     // console.log(containsGrav);
@@ -133,9 +117,13 @@ class Profile extends Component {
   render() {
     const { profile, user } = this.state;
     return (
-      <body>
+      <div>
         <div className="profile">
-          <img src={profile.picture} className="profile-default" />
+          <img
+            src={profile.picture}
+            className="profile-default"
+            alt="profile"
+          />
 
           <div className="details">
             <ListGroup>
@@ -148,13 +136,13 @@ class Profile extends Component {
               {/* Changed profile.nickname to profile.name */}
               <div className="userdatalist">
                 <div className="userbalance">
-                  <i className="far fa-clock"> Balance {user.balanceHours}</i>
+                  <i className="far fa-clock"> Balance: {user.balanceHours}</i>
                 </div>
                 <div className="userqualifier">
-                  {/* <i class="far fa-heart"> */}
-                  {/* <i class="far fa-bookmark"> */}
-                  {/* <i class="far fa-bell"> */}
-                  <i class="far fa-thumbs-up">
+                  {/* <i className="far fa-heart"> */}
+                  {/* <i className="far fa-bookmark"> */}
+                  {/* <i className="far fa-bell"> */}
+                  <i className="far fa-thumbs-up">
                     {" "}
                     {/* <button class="pulse-button"> */}
                     {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
@@ -167,7 +155,7 @@ class Profile extends Component {
             </ListGroup>
           </div>
         </div>
-      </body>
+      </div>
     );
   }
 }

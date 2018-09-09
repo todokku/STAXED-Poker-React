@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Jumbotron, Button } from "react-bootstrap";
+// import { Jumbotron, Button } from "react-bootstrap";
 import "../Home/Home.css";
 
 class Home extends Component {
   render() {
-    const { isAuthenticated, login } = this.props.auth;
+    // const { isAuthenticated, login } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
     return (
-      <body>
+      <div>
         <div className="jumbotron vertical-center container-fluid">
           <div className="container text-center">
             <div className="container">
@@ -16,7 +17,7 @@ class Home extends Component {
             <h1>Home</h1>
           </div>
         </div>
-      </body>
+      </div>
     );
   }
 }
