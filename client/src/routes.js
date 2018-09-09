@@ -83,6 +83,7 @@ export const makeMainRoutes = () => {
               )
             }
           />
+
           <Route 
             path='/admin/control/:id'
             render={(props) =>
@@ -92,6 +93,15 @@ export const makeMainRoutes = () => {
               : ( <Redirect to="/admin" />)
               }
           />
+          {/* <Route 
+            path='/admin/control/:id'
+            render={(props) =>
+            props.id ? (
+            <SingleUser {...props}/> 
+            )
+            : ( <Redirect to="/admin" />)
+            }
+          /> */}
 
           {/* <Route path='/user/new' component={CreateUser} /> */}
 
