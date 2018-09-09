@@ -103,4 +103,7 @@ export default class Auth {
     ).split(" ");
     return scopes.every(scope => grantedScopes.includes(scope));
   }
+
+
+
 }

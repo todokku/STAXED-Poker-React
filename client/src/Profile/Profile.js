@@ -18,6 +18,7 @@ class Profile extends Component {
       loading: true
     };
     this.checkGrav = this.checkGrav.bind(this);
+<<<<<<< HEAD
     // this.matchUserId = this.matchUserId.bind(this);
   }
 
@@ -35,6 +36,10 @@ class Profile extends Component {
   componentDidMount() {
     console.log("component did finally mount");
   }
+=======
+    // this.matchEmail = this.matchEmail.bind(this);
+  }  
+>>>>>>> ce6dee5d73368e79ce1c9888e1d9c29743e564ad
 
   // moved initial setState to constructor above.
   componentWillMount() {
@@ -45,20 +50,30 @@ class Profile extends Component {
 
     if (!userProfile) {
       getProfile((err, profile) => {
-        console.log(profile);
-        // normal signins
         if (this.checkGrav(profile.picture) === true) {
           profile.picture = defaultPicture;
           this.setState({ profile, emailString: profile.name });
+<<<<<<< HEAD
           this.matchEmail(this.state.emailString);
           // console.log(this.state);
         }
         // google signins return usernames as "profile.nickname" (keolazy1).
+=======
+          // this.matchEmail(this.state.emailString)
+          // console.log(this.state);
+        } 
+>>>>>>> ce6dee5d73368e79ce1c9888e1d9c29743e564ad
         else if (this.checkGrav(profile.picture) === false) {
-          console.log("No grav... ");
+          console.log("This must be a gmail account... ");
           this.setState({ profile, emailString: profile.nickname });
+<<<<<<< HEAD
           this.matchEmail(this.state.emailString);
           console.log(this.state);
+=======
+          this.matchEmail(this.state.emailString)
+          // Now I need userId to make another fetch.
+          this.getUser(this.state.userId) 
+>>>>>>> ce6dee5d73368e79ce1c9888e1d9c29743e564ad
         } else {
           console.log("if and else if, didn't happen....");
           this.setState({ profile });
@@ -73,20 +88,45 @@ class Profile extends Component {
       this.setState({
         loading: false,
         users: response.data
+<<<<<<< HEAD
       });
       console.log(this.state.emailString);
       this.matchEmail(this.state.emailString);
       console.log(this.state); // users{3} is populated. emailString filled.
       // this.matchEmail(this.state.emailString);
     });
+=======
+      })
+      this.matchEmail(this.state.emailString);
+      console.log(this.state);
+      // Consider doing another fetch here.
+    })
+
+>>>>>>> ce6dee5d73368e79ce1c9888e1d9c29743e564ad
   }
 
-  // checks to see if profile.picture contains a bad stock photo.
+  componentDidMount() {
+    // axios.get(`${API_URL}/user/${this.state.userId}`)
+    //   .then((response) => {
+    //     if(!response) {
+    //       throw Error("Network Request Failed")
+    //     }
+    //     return response.data
+    //   })
+    //   .then(data => data.json())
+    //   .then(data => {
+    //     this.setState({
+    //       user: data
+    //     })
+    //   })
+  }
+
   checkGrav(str) {
     let containsGrav = /grav/.test(str);
     // console.log(containsGrav);
     return containsGrav;
   }
+<<<<<<< HEAD
 
   // string is going to be this.state.emailString.
   // will see if test passes the match with input.
@@ -95,20 +135,44 @@ class Profile extends Component {
     const usersArray = this.state.users;
     console.log(usersArray); // Array(3)
     for (let i = 0; i < usersArray.length; i++) {
+=======
+  
+  matchEmail(string) {
+    console.log(string);
+    const usersArray = this.state.users;
+    for(let i = 0; i < usersArray.length; i++) {
+>>>>>>> ce6dee5d73368e79ce1c9888e1d9c29743e564ad
       let userEmail = usersArray[i].email;
       let re = new RegExp(string, "gi");
       // console.log(userEmail.match(re));
+<<<<<<< HEAD
       if (userEmail.match(re)) {
         console.log("YAY! found an email match with " + usersArray[i].email);
         this.setState({ userId: usersArray[i].id });
       } else {
         console.log("Sorry, no matches");
+=======
+      if(userEmail.match(re)) {
+        console.log('Found emailString match with ' + usersArray[i].email)
+        this.setState({ userId: usersArray[i].id})
+>>>>>>> ce6dee5d73368e79ce1c9888e1d9c29743e564ad
       }
     }
   }
 
+  getUser(input) {
+    console.log('getUser being called')
+    const id = input 
+    axios.get(`${API_URL}/user/${id}`)
+    .then((response) => {
+      console.log(response.data); // returns (1) user object that matches auth.
+      this.setState( { user: response.data})
+    })
+    .catch(error => console.log(error))
+  }
+
   render() {
-    const { profile } = this.state;
+    const { profile, user } = this.state;
     return (
       <body>
         <div className="profile">
@@ -127,10 +191,15 @@ class Profile extends Component {
                 <div className="userbalance">
                   <i className="far fa-clock">
                     {" "}
+<<<<<<< HEAD
                     Balance: {profile.balanceHours}
+=======
+                    Balance {user.balanceHours}
+>>>>>>> ce6dee5d73368e79ce1c9888e1d9c29743e564ad
                   </i>
                 </div>
                 <div className="userqualifier">
+<<<<<<< HEAD
                   {/* <i class="far fa-heart"> */}
                   {/* <i class="far fa-bookmark"> */}
                   {/* <i class="far fa-bell"> */}
@@ -141,6 +210,10 @@ class Profile extends Component {
                     Qualifier: {profile.qualifierHours}
                   </i>
                   {/* </button> */}
+=======
+                  {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
+                  Qualifier {user.qualifierHours}
+>>>>>>> ce6dee5d73368e79ce1c9888e1d9c29743e564ad
                 </div>
               </div>
               {/* </div> */}

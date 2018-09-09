@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../../db')
-
+const jwt = require('express-jwt')
+const jwtAuthz = require('express-jwt-authz')
+const jwksRsa = require('jwks-rsa')
 const cors = require('cors')
 require('dotenv').config()
 
@@ -11,6 +13,36 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 
 router.use(cors())
 
+const checkJwt = jwt({
+  // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
+	secret: jwksRsa.expressJwtSecret({
+		cache: true,
+		rateLimit: true,
+		jwksRequestsPerMinute: 5,
+		jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+	}),
+
+  // Validate the audience and the issuer.
+	audience: process.env.AUTH0_AUDIENCE,
+	issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+	algorithms: ['RS256']
+})
+
+const checkScopes = jwtAuthz([ 'read:messages' ])
+const checkScopesAdmin = jwtAuthz([ 'write:messages' ])
+
+app.get('/', checkJwt, checkScopesAdmin, (req,res) => {
+	db.select()
+	.from('users')
+	.orderBy('id')
+	.then((data) => {
+		res.send(data)
+	})
+})
+
+
+
+// Old user/todo routing.
 router.get('/', function(req, res) {
 	db.select()
 	.from('users')
@@ -40,7 +72,16 @@ router.get('/:id', (req, res) =>
 		})
 )
 
-// IDEMOPOTENCE: is gonna be the say no matter how many times you call on something. 
+// testing to see if i can return single user by username.
+router.get('/:username', (req, res) => {
+	db('users')
+	.where( {username: req.params.username })
+	.first()
+	.then( (data) => {
+		res.send(data)
+	})
+})
+
 
 // PATCH only modifies the one we submit in the body.
 router.patch('/:id', function(req, res) {

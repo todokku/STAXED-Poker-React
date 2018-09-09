@@ -26,12 +26,66 @@ class App extends Component {
             <Navbar.Brand>
               <a href="/home">Stacked App</a>
             </Navbar.Brand>
+<<<<<<< HEAD
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav class="navbar-collapse" pullRight>
               <NavItem>
                 <li
+=======
+
+            <Button
+              bsStyle="primary"
+              className="btn-margin"
+              onClick={this.goTo.bind(this, "home")}
+            >
+              Home
+            </Button>
+
+            {/* <Button
+              bsStyle="primary"
+              className="btn-margin"
+              onClick={this.goTo.bind(this, "main")}
+            >
+              Main
+            </Button> */}
+
+            {!isAuthenticated() && (
+              <Button
+                id="qsLoginBtn"
+                bsStyle="primary"
+                className="btn-margin"
+                onClick={this.login.bind(this)}
+              >
+                Log In
+              </Button>
+            )}
+
+            {isAuthenticated() && (
+              <Button
+                bsStyle="primary"
+                className="btn-margin"
+                onClick={this.goTo.bind(this, "profile")}
+              >
+                Profile
+              </Button>
+            )}
+
+            {isAuthenticated() && (
+              <Button
+                bsStyle="primary"
+                className="btn-margin"
+                onClick={this.goTo.bind(this, "ping")}
+              >
+                Ping
+              </Button>
+            )}
+
+            {isAuthenticated() && (
+              // userHasScopes(["write:messages"]) && (
+                <Button
+>>>>>>> ce6dee5d73368e79ce1c9888e1d9c29743e564ad
                   bsStyle="primary"
                   className="btn-margin"
                   onClick={this.goTo.bind(this, "home")}

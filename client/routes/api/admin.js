@@ -32,4 +32,14 @@ app.post('/', checkJwt, checkScopesAdmin, function(req, res) {
 	res.json({ message: 'Hello from an admin endpoint! You need to be authenticated and have a scope of write:messages to see this.' })
 })
 
+// 
+// app.get('/', checkJwt, checkScopesAdmin, (req,res) => {
+// 	db.select()
+// 	.from('users')
+// 	.orderBy('id')
+// 	.then((data) => {
+// 		res.send(data)
+// 	})
+// })
+
 module.exports = app
