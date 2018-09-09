@@ -3,14 +3,14 @@ import { Button } from "react-bootstrap";
 import { API_URL } from "./../constants";
 import axios from "axios";
 import "../Admin/Admin.css";
-import AdminControl from '../component/AdminControl';
+import AdminControl from "../component/AdminControl";
 // import ItemsBody from '../component/ItemsBody'
 import { Link } from 'react-router-dom';
 
 class Admin extends Component {
   // this.onEdit = this.onEdit.bind(this);
   // this.updateState = this.updateState.bind(this);
-  
+
   componentWillMount() {
     this.setState({ message: "", admins: {}, users: {}, viewUsers: false });
   }
@@ -18,7 +18,7 @@ class Admin extends Component {
   onViewUsers() {
     this.setState({
       viewUsers: !this.state.viewUsers
-    })
+    });
   }
 
   adminPing() {
@@ -31,12 +31,10 @@ class Admin extends Component {
   }
 
   getAdmins() {
-    axios
-      .get(`${API_URL}/admin`)
-      .then(response => {
-        console.log(response)
-        this.setState({ admins: response.data})
-      })
+    axios.get(`${API_URL}/admin`).then(response => {
+      console.log(response);
+      this.setState({ admins: response.data });
+    });
   }
 
   goTo(route) {
@@ -45,11 +43,15 @@ class Admin extends Component {
 
   render() {
     const { message, users, admins } = this.state;
-    if(this.state.viewUsers) {
+    if (this.state.viewUsers) {
       return (
-        <AdminControl message={message} users={users} admins={admins} testProps="if you can see this, props passed succesfully!"/>
-      )
-
+        <AdminControl
+          message={message}
+          users={users}
+          admins={admins}
+          testProps="if you can see this, props passed succesfully!"
+        />
+      );
     }
 
     return (
@@ -82,7 +84,6 @@ class Admin extends Component {
             </div>
           </div>
         </div>
-        
       </div>
     );
   }

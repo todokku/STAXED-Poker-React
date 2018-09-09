@@ -23,7 +23,6 @@ class App extends Component {
     return (
       <div className="header-nav">
         <Navbar inverse fluid collapseOnSelect>
-
           <Navbar.Header>
             <Navbar.Brand>
               <a href="/home">Stacked App</a>
@@ -33,23 +32,28 @@ class App extends Component {
 
           <Navbar.Collapse>
             <Nav className="navbar-collapse" pullRight>
-
-              <NavItem className="btn-margin"
-                  onClick={this.goTo.bind(this, "home")}>
-                  Home
+              <NavItem
+                className="btn-margin"
+                onClick={this.goTo.bind(this, "home")}
+              >
+                Home
               </NavItem>
-              
+
               {isAuthenticated() ? (
-                <NavItem className="btn-margin"
-                onClick={this.goTo.bind(this, "profile")}
-                >Profile
-                </NavItem> )
-                : (
-                <NavItem className="btn-margin"
-                onClick={this.goTo.bind(this, "profile")}
-                >Profile
-                </NavItem>  )
-              }
+                <NavItem
+                  className="btn-margin"
+                  onClick={this.goTo.bind(this, "profile")}
+                >
+                  Profile
+                </NavItem>
+              ) : (
+                <NavItem
+                  className="btn-margin"
+                  onClick={this.goTo.bind(this, "profile")}
+                >
+                  Profile
+                </NavItem>
+              )}
 
               {/* {isAuthenticated() && (
                 <NavItem>
@@ -65,24 +69,30 @@ class App extends Component {
 
               {isAuthenticated() && ( // remove this ( after uncommenting below.
                 // userHasScopes(["write:messages"]) && (
-                <NavItem className="btn-margin"
-                onClick={this.goTo.bind(this, "admin")}>
-                    Admin
+                <NavItem
+                  className="btn-margin"
+                  onClick={this.goTo.bind(this, "admin")}
+                >
+                  Admin
                 </NavItem>
               )}
 
               {isAuthenticated() && (
-                <NavItem id="qsLogoutBtn"
-                className="btn-margin"
-                onClick={this.logout.bind(this)}>
-                    Log Out
+                <NavItem
+                  id="qsLogoutBtn"
+                  className="btn-margin"
+                  onClick={this.logout.bind(this)}
+                >
+                  Log Out
                 </NavItem>
               )}
               {!isAuthenticated() && (
-                <NavItem id="qsLoginBtn"
-                className="btn-margin"
-                onClick={this.login.bind(this)}>
-                    Log In
+                <NavItem
+                  id="qsLoginBtn"
+                  className="btn-margin"
+                  onClick={this.login.bind(this)}
+                >
+                  Log In
                 </NavItem>
               )}
             </Nav>

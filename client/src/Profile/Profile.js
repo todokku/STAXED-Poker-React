@@ -35,15 +35,16 @@ class Profile extends Component {
         if (this.checkGrav(profile.picture) === true) {
           profile.picture = defaultPicture;
           this.setState({ profile, emailString: profile.name });
-          // this.matchEmail(this.state.emailString)
+          this.matchEmail(this.state.emailString);
           // console.log(this.state);
-        } 
+        }
+        // google signins return usernames as "profile.nickname" (keolazy1).
         else if (this.checkGrav(profile.picture) === false) {
           console.log("This must be a gmail account... ");
           this.setState({ profile, emailString: profile.nickname });
-          this.matchEmail(this.state.emailString)
+          this.matchEmail(this.state.emailString);
           // Now I need userId to make another fetch.
-          this.getUser(this.state.userId) 
+          this.getUser(this.state.userId);
         } else {
           console.log("if and else if, didn't happen....");
           this.setState({ profile });
@@ -71,30 +72,33 @@ class Profile extends Component {
     // console.log(containsGrav);
     return containsGrav;
   }
-  
+
   matchEmail(string) {
     console.log(string);
     const usersArray = this.state.users;
-    for(let i = 0; i < usersArray.length; i++) {
+    for (let i = 0; i < usersArray.length; i++) {
       let userEmail = usersArray[i].email;
       let re = new RegExp(string, "gi");
       // console.log(userEmail.match(re));
-      if(userEmail.match(re)) {
-        console.log('Found emailString match with ' + usersArray[i].email)
-        this.setState({ userId: usersArray[i].id})
+      if (userEmail.match(re)) {
+        console.log("YAY! found an email match with " + usersArray[i].email);
+        this.setState({ userId: usersArray[i].id });
+      } else {
+        console.log("Sorry, no matches");
       }
     }
   }
 
   getUser(input) {
-    console.log('getUser being called')
-    const id = input 
-    axios.get(`${API_URL}/user/${id}`)
-    .then((response) => {
-      console.log(response.data); // returns (1) user object that matches auth.
-      this.setState( { user: response.data})
-    })
-    .catch(error => console.log(error))
+    console.log("getUser being called");
+    const id = input;
+    axios
+      .get(`${API_URL}/user/${id}`)
+      .then(response => {
+        console.log(response.data); // returns (1) user object that matches auth.
+        this.setState({ user: response.data });
+      })
+      .catch(error => console.log(error));
   }
 
   render() {
@@ -102,7 +106,11 @@ class Profile extends Component {
     return (
       <div>
         <div className="profile">
-          <img src={profile.picture} className="profile-default" alt="profile"/>
+          <img
+            src={profile.picture}
+            className="profile-default"
+            alt="profile"
+          />
 
           <div className="details">
             <ListGroup>
@@ -115,15 +123,12 @@ class Profile extends Component {
               {/* Changed profile.nickname to profile.name */}
               <div className="userdatalist">
                 <div className="userbalance">
-                  <i className="far fa-clock">
-                    {" "}
-                    Balance {user.balanceHours}
-                  </i>
+                  <i className="far fa-clock"> Balance: {user.balanceHours}</i>
                 </div>
                 <div className="userqualifier">
-                  {/* <i class="far fa-heart"> */}
-                  {/* <i class="far fa-bookmark"> */}
-                  {/* <i class="far fa-bell"> */}
+                  {/* <i className="far fa-heart"> */}
+                  {/* <i className="far fa-bookmark"> */}
+                  {/* <i className="far fa-bell"> */}
                   <i className="far fa-thumbs-up">
                     {" "}
                     {/* <button class="pulse-button"> */}
