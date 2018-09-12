@@ -31,22 +31,52 @@ class Profile extends Component {
     console.log(this.props.auth);
     const defaultPicture = logo;
 
+    // Async fetch. if/else logic should only run after this.
+    axios.get(`${API_URL}/user`)
+      .then(response => {
+      console.log(response);
+      this.setState({
+        loading: false,
+        users: response.data
+      }
+      , this.matchUsernameForId(this.state.emailString));
+     })
+    
+
+    // pass callback in setState to ensure proper reconciliation OR componentDidUpdate
     if (!userProfile) {
       getProfile((err, profile) => {
         if (this.checkGrav(profile.picture) === true) {
           profile.picture = defaultPicture;
-          this.setState({ profile, emailString: profile.name });
-          this.matchEmail(this.state.emailString);
-          this.getUser(this.state.userId)
-          // console.log(this.state);
+          console.log(profile)
+          // this.setState({ profile, emailString: profile.name }, this.matchUsernameForId(this.state.emailString));
+          // this.matchEmail(this.state.emailString);
+          // this.getUser(this.state.userId)
+          axios.get(`${API_URL}/user`).then(response => {
+            console.log(response);
+            this.setState({
+              loading: false,
+              profile,
+              emailString: profile.name,
+              users: response.data
+            }, this.matchUsernameForId(this.state.emailString));
+          });
         }
         // google signins return usernames as "profile.nickname" (keolazy1).
         else if (this.checkGrav(profile.picture) === false) {
           console.log("This must be a gmail account... ");
-          this.setState({ profile, emailString: profile.nickname });
-          this.matchEmail(this.state.emailString);
-          // Now I need userId to make another fetch.
-          this.getUser(this.state.userId);
+          // this.setState({ profile, emailString: profile.nickname }, this.matchUsernameForId(this.state.emailString));
+          // this.matchEmail(this.state.emailString);
+          // this.getUser(this.state.userId);
+          axios.get(`${API_URL}/user`).then(response => {
+            console.log(response);
+            this.setState({
+              loading: false,
+              profile,
+              emailString: profile.nickname,
+              users: response.data
+            }, this.matchUsernameForId(this.state.emailString));
+          });
         } else {
           console.log("if and else if, didn't happen....");
           this.setState({ profile });
@@ -55,22 +85,17 @@ class Profile extends Component {
     } else {
       this.setState({ profile: userProfile });
     }
-
-    axios.get(`${API_URL}/user`).then(response => {
-      console.log(response);
-      this.setState({
-        loading: false,
-        users: response.data
-      });
-      console.log(this.state.emailString);
-      this.matchEmail(this.state.emailString);
-      console.log(this.state); // users{3} is populated. emailString filled.
-      // this.matchEmail(this.state.emailString);
-    });
-
-
-
+  // End of componentWillUnount()
   }
+
+  // componentDidUpdate() {
+  //   console.log('component did update');
+  //   console.log(this.state);
+  // }
+
+  // componentDidMount() {
+  //   console.log(this.state + 'Mounted')
+  // }
 
   checkGrav(str) {
     let containsGrav = /grav/.test(str);
@@ -78,42 +103,47 @@ class Profile extends Component {
     return containsGrav;
   }
 
-  matchEmail(string) {
+  userFetch(id) {
+    axios
+    .get(`${API_URL}/user/${id}`)
+    .then(response => { 
+      this.setState( { userId: id, user: response.data}, () => console.log(this.state))
+    })
+    .catch(error => console.log(error))
+  }
+
+  // Function for gmail usernames: combine matchEmail() with getUser
+  matchUsernameForId(string) {
     console.log(string);
+    let uniqueId = -1;
     const usersArray = this.state.users;
     for (let i = 0; i < usersArray.length; i++) {
       let userEmail = usersArray[i].email;
       let re = new RegExp(string, "gi");
       // console.log(userEmail.match(re));
-      if (userEmail.match(re)) {
+      if (userEmail.match(re).length < 25) {
         console.log("YAY! found an email match with " + usersArray[i].email);
-        this.setState({ userId: usersArray[i].id });
+        uniqueId = usersArray[i].id
+        console.log(uniqueId)
+        this.userFetch(uniqueId)
       } else {
-        console.log("Sorry, no matches");
+        uniqueId = usersArray[i].id;
+        console.log(uniqueId);
+        console.log("Sorry, username didn't match");
       }
     }
+  
   }
 
-  getUser(input) {
-    console.log("getUser being called");
-    const id = input;
-    axios
-      .get(`${API_URL}/user/${id}`)
-      .then(response => {
-        console.log(response.data); // returns (1) user object that matches auth.
-        this.setState({ user: response.data });
-      })
-      .catch(error => console.log(error));
-  }
 
   render() {
     const { profile, user } = this.state;
     // Handle conditional render code below
-    // if(!this.state.user.balanceHours) {
-    //   return (
-    //     <div>Loading... If stats do not render, please try refreshing. {profile.name} - {user.balanceHours}</div>
-    //   )
-    // }
+    if(!this.state.user.balanceHours) {
+      return (
+        <div>Loading... If stats do not render, please try refreshing. {profile.name} - {user.balanceHours}</div>
+      )
+    }
 
     return (
       <div>
