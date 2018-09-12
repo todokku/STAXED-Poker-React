@@ -8,6 +8,9 @@ class UserCard extends Component {
     this.state = {
       editing: false,
       id: props.id,
+      name: props.name,
+      email: props.email,
+      phone: props.phone,
       access: props.access,
       balanceHours: props.balanceHours,
       qualifierHours: props.qualifierHours,
@@ -22,26 +25,29 @@ class UserCard extends Component {
     });
   }
 
-  updateState(email, access, balanceHours, qualifierHours) {
+  updateState(email, name, access, balanceHours, qualifierHours, phone, checkedIn) {
     this.setState({
       email: email,
+      name: name,
       access: access,
       balanceHours: balanceHours,
       qualifierHours: qualifierHours,
+      phone: phone,
+      checkedIn: checkedIn
     });
   }
 
   render() {
-    const { email, access } = this.state;
+    const { email, name, access, balanceHours, qualifierHours, phone, checkedIn } = this.state;
     if (this.state.editing) {
       return (
-        <CreateEditUser email={email} access={access} toggleEdit={this.onEdit} id={this.props.id}
+        <CreateEditUser email={email} name={name} access={access} balanceHours={balanceHours} qualifierHours={qualifierHours} phone={phone} checkedIn={checkedIn} toggleEdit={this.onEdit} id={this.props.id}
                         updateState={this.updateState}/>
       );
     }
 
     return (
-      <SingleUserList email={email} access={access} onEdit={this.onEdit} id={this.props.id}/>
+      <SingleUserList email={email} name={name} access={access} onEdit={this.onEdit} id={this.props.id} balanceHours={balanceHours} qualifierHours={qualifierHours} phone={phone} checkedIn={checkedIn} />
     );
   }
 }

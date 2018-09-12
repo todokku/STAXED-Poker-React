@@ -16,13 +16,14 @@ class Profile extends Component {
       emailString: "",
       userId: undefined,
       loading: true,
-      isMounted: ''
+      isMounted: ""
     };
     this.checkGrav = this.checkGrav.bind(this);
     // this.matchUserId = this.matchUserId.bind(this);
   }
 
-  // moved initial setState to constructor above.
+  // Try version where helper functions return values to be stored variables
+  // and setState isn't called till the very end.
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
     // Imported from line 6
@@ -35,6 +36,7 @@ class Profile extends Component {
           profile.picture = defaultPicture;
           this.setState({ profile, emailString: profile.name });
           this.matchEmail(this.state.emailString);
+          this.getUser(this.state.userId);
           // console.log(this.state);
         }
         // google signins return usernames as "profile.nickname" (keolazy1).
@@ -102,43 +104,55 @@ class Profile extends Component {
 
   render() {
     const { profile, user } = this.state;
-    return (
-      <div>
-        <div className="profile">
-          <img
-            src={profile.picture}
-            className="profile-default"
-            alt="profile"
-          />
+    // Handle conditional render code below
+    // if(!this.state.user.balanceHours) {
+    //   return (
+    //     <div>Loading... If stats do not render, please try refreshing. {profile.name} - {user.balanceHours}</div>
+    //   )
+    // }
 
-          <div className="details">
-            <ListGroup>
-              {/* <div className="userdatalist"> */}
-              <div className="username">
-                {/* Can fix the default profile picture sizing issue
+    return (
+      <div className="body">
+        <div className="container">
+          <div className="profile">
+            <img
+              src={profile.picture}
+              className="profile-default"
+              alt="profile"
+            />
+
+            <div className="details">
+              <ListGroup>
+                {/* <div className="userdatalist"> */}
+                <div className="username">
+                  {/* Can fix the default profile picture sizing issue
                       by resizing the src/images/user-solid.png manually  */}
-                <i className="far fa-user-circle"> {profile.name}</i>
-              </div>
-              {/* Changed profile.nickname to profile.name */}
-              <div className="userdatalist">
-                <div className="userbalance">
-                  <i className="far fa-clock"> Balance: {user.balanceHours}</i>
+                  <i className="far fa-user-circle"> {profile.name}</i>
                 </div>
-                <div className="userqualifier">
-                  {/* <i className="far fa-heart"> */}
-                  {/* <i className="far fa-bookmark"> */}
-                  {/* <i className="far fa-bell"> */}
-                  <i className="far fa-thumbs-up">
-                    {" "}
-                    {/* <button class="pulse-button"> */}
-                    {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
-                    Qualifier: {user.qualifierHours}
-                  </i>
-                  {/* </button> */}
+                {/* Changed profile.nickname to profile.name */}
+                <div className="userdatalist">
+                  <div className="userbalance">
+                    <i className="far fa-clock">
+                      {" "}
+                      Balance: {user.balanceHours}
+                    </i>
+                  </div>
+                  <div className="userqualifier">
+                    {/* <i className="far fa-heart"> */}
+                    {/* <i className="far fa-bookmark"> */}
+                    {/* <i className="far fa-bell"> */}
+                    <i className="far fa-thumbs-up">
+                      {" "}
+                      {/* <button class="pulse-button"> */}
+                      {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
+                      Qualifier: {user.qualifierHours}
+                    </i>
+                    {/* </button> */}
+                  </div>
                 </div>
-              </div>
-              {/* </div> */}
-            </ListGroup>
+                {/* </div> */}
+              </ListGroup>
+            </div>
           </div>
         </div>
       </div>

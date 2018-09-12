@@ -4,8 +4,8 @@ import ListUser from "./ListUser";
 import { API_URL } from "../constants";
 import axios from "axios";
 import _ from "lodash";
-import "../App.css";
-import "../Admin/Admin.css";
+import "../Profile/Profile.css";
+// import "../Admin/Admin.css";
 // import { Button } from "react-bootstrap";
 
 class AdminControl extends Component {
@@ -33,6 +33,7 @@ class AdminControl extends Component {
         <ListUser
           key={user.id}
           id={user.id}
+          name={user.name}
           access={user.access}
           email={user.email}
           phone={user.phone}
@@ -43,28 +44,21 @@ class AdminControl extends Component {
     });
   }
 
-  // handleButtonClick = async () => {
-  //   const response = await axios.get(`${API_URL}/control/users`)
-  //   if(this._isMounted) {
-  //     console.log("component is mounted, so users being fetched and stored")
-  //     this.setState({ user: response.data, loading: false })
-  //   }
-  // }
-
   componentWillUnmount() {
     this._isMounted = false;
   }
 
   render() {
-    // if(this.state.loading)
-    // return <div>Component Loading...</div>
+    if (this.state.loading) return <div>Component Loading...</div>;
 
     return (
-      <div>
-        <div>All Users List</div>
-        <ListUsers>
-          <div>{this.renderUsers()}</div>
-        </ListUsers>
+      <div className="body">
+        <div className="container-list">
+          <div>All Users List</div>
+          <ListUsers>
+            <div>{this.renderUsers()}</div>
+          </ListUsers>
+        </div>
       </div>
     );
   }

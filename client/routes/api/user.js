@@ -61,16 +61,14 @@ router.get('/:id', (req, res) =>
 		})
 )
 
-// testing to see if i can return single user by username.
-router.get('/:username', (req, res) => {
+router.get('/:id', (req, res) =>
 	db('users')
-	.where( {username: req.params.username })
-	.first()
-	.then( (data) => {
-		res.send(data)
-	})
-})
-
+		.where({id: req.params.id })
+		.first()
+		.then(function(data) {
+			res.send(data)
+		})
+)
 
 // PATCH only modifies the one we submit in the body.
 router.patch('/:id', function(req, res) {
@@ -89,7 +87,6 @@ router.put('/:id', function(req,res) {
 		.where({ id: req.params.id })
 		.update({
 			email: req.body.email || null,
-			hashed_pw: req.body.hashed_pw || null,
 			name: req.body.name || null,
 			phone: req.body.phone || null,
 			balanceHours: req.body.balanceHours || null,

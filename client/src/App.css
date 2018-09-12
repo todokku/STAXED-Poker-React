@@ -1,12 +1,15 @@
+/* Navbar and Footer */
+
 .btn-margin {
   margin: 1px 1px;
 }
 
 .header-nav {
   overflow: visible !important;
-  position: relative;
+  position: fixed;
   z-index: 10000;
   width: 100%;
+  min-height: 70px;
 }
 
 /* @media (min-width:320px)  { 
@@ -101,8 +104,8 @@ li {
 }
 
 /* ListUser.js */
-.user-list-body {
+/* .user-list-body {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-}
+} */

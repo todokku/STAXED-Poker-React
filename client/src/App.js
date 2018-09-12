@@ -3,7 +3,29 @@ import React, { Component } from "react";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import "./App.css";
 
+// When user logins and arrives at App, can I post user?
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      profile: {}
+    };
+  }
+  // If I retrieve profile: {} from auth0 here, do I change the NavItems to <Links>?
+
+  postNewUser(userProfile) {
+    console.log(userProfile);
+    if (!userProfile) {
+      this.getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
+    this.goTo.bind(this, "profile");
+  }
+
   goTo(route) {
     this.props.history.replace(`/${route}`);
   }
@@ -18,7 +40,7 @@ class App extends Component {
 
   render() {
     // const { isAuthenticated, userHasScopes } = this.props.auth;
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated, getUniqueId, adminId } = this.props.auth;
 
     return (
       <div className="header-nav">
@@ -36,17 +58,10 @@ class App extends Component {
                 className="btn-margin"
                 onClick={this.goTo.bind(this, "home")}
               >
-                Home
+                Home - (Public View - No Signin required)
               </NavItem>
 
-              {isAuthenticated() ? (
-                <NavItem
-                  className="btn-margin"
-                  onClick={this.goTo.bind(this, "profile")}
-                >
-                  Profile
-                </NavItem>
-              ) : (
+              {isAuthenticated() && (
                 <NavItem
                   className="btn-margin"
                   onClick={this.goTo.bind(this, "profile")}
@@ -67,15 +82,16 @@ class App extends Component {
                 </NavItem>
               )}  */}
 
-              {isAuthenticated() && ( // remove this ( after uncommenting below.
-                // userHasScopes(["write:messages"]) && (
-                <NavItem
-                  className="btn-margin"
-                  onClick={this.goTo.bind(this, "admin")}
-                >
-                  Admin
-                </NavItem>
-              )}
+              {isAuthenticated() &&
+              getUniqueId() === adminId && ( // remove this ( after uncommenting below.
+                  // userHasScopes(["write:messages"]) && (
+                  <NavItem
+                    className="btn-margin"
+                    onClick={this.goTo.bind(this, "admin")}
+                  >
+                    Admin
+                  </NavItem>
+                )}
 
               {isAuthenticated() && (
                 <NavItem

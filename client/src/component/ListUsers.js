@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "../Profile/Profile.css";
 
 const ListUsers = ({ children }) => {
   return (
