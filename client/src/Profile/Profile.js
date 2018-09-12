@@ -14,36 +14,30 @@ class Profile extends Component {
       users: {},
       user: {},
       username: "",
-      userId: undefined,
+      userId: null,
       loading: true,
       isMounted: ''
     };
     this.checkGrav = this.checkGrav.bind(this);
-    // this.matchUserId = this.matchUserId.bind(this);
     this.matchEmailForId = this.matchEmailForId.bind(this)
     this.matchUsernameForId = this.matchUsernameForId.bind(this)
+    this.userFetch = this.userFetch.bind(this)
   }
 
-
-  // Try version where helper functions return values to be stored variables
-  // and setState isn't called till the very end.
-  componentDidMount() {
+  componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
-    // Imported from line 6
-    console.log(this.props.auth);
     const defaultPicture = logo;
+    console.log(this.props.auth);
 
     // Async fetch. if/else logic should only run after this.
     axios.get(`${API_URL}/user`)
       .then(response => {
-      console.log(response);
       this.setState({
         loading: false,
         users: response.data
       })
      })
-    
-  
+
     // pass callback in setState to ensure proper reconciliation OR componentDidUpdate
     if (!userProfile) {
       getProfile((err, profile) => {
@@ -72,7 +66,7 @@ class Profile extends Component {
               username: profile.nickname,
               users: response.data
             }, this.matchUsernameForId(this.state.username));
-          });
+          })
         } else {
           console.log("if and else if, didn't happen....");
           this.setState({ profile });
@@ -81,13 +75,18 @@ class Profile extends Component {
     } else {
       this.setState({ profile: userProfile });
     }
-  // End of componentWillUnount()
-  }
+  
+  } // End of componentWillUnount()
 
+  // componentDidUpdate(prevState) {
+  //   this.matchEmailForId();
+  //   if(this.state.userId !== prevState.userId) {
+  //     this.userFetch(this.state.userId)
+  //   }
+  // }
 
   checkGrav(str) {
     let containsGrav = /grav/.test(str);
-    // console.log(containsGrav);
     return containsGrav;
   }
 
@@ -95,7 +94,7 @@ class Profile extends Component {
     axios
     .get(`${API_URL}/user/${id}`)
     .then(response => { 
-      this.setState( { userId: id, user: response.data}, () => console.log(this.state))
+      this.setState( { userId: id, user: response.data}, () => this.setState({state: this.state}))
     })
     .catch(error => console.log(error))
   }
@@ -111,6 +110,7 @@ class Profile extends Component {
         uniqueId = usersArray[i].id
         console.log(uniqueId)
         this.userFetch(uniqueId)
+        break;
       } else {
         // uniqueId = usersArray[i].id;
         // console.log(uniqueId);
@@ -133,6 +133,7 @@ class Profile extends Component {
         uniqueId = usersArray[i].id
         console.log(uniqueId)
         this.userFetch(uniqueId)
+        break;
       } else {
         console.log("Sorry, username didn't match");
       }
