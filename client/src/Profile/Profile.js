@@ -13,59 +13,64 @@ class Profile extends Component {
       profile: {},
       users: {},
       user: {},
-      emailString: "",
-      userId: undefined,
+      username: "",
+      userId: null,
       loading: true,
       isMounted: ""
     };
     this.checkGrav = this.checkGrav.bind(this);
-    // this.matchUserId = this.matchUserId.bind(this);
+    this.matchEmailForId = this.matchEmailForId.bind(this);
+    this.matchUsernameForId = this.matchUsernameForId.bind(this);
+    this.userFetch = this.userFetch.bind(this);
   }
 
-  // Try version where helper functions return values to be stored variables
-  // and setState isn't called till the very end.
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
-    // Imported from line 6
-    console.log(this.props.auth);
     const defaultPicture = logo;
+    console.log(this.props.auth);
 
     // Async fetch. if/else logic should only run after this.
-    axios.get(`${API_URL}/user`)
-      .then(response => {
-      console.log(response);
+    axios.get(`${API_URL}/user`).then(response => {
       this.setState({
         loading: false,
         users: response.data
-      }
-      , this.matchUsernameForId(this.state.emailString));
-     })
-    
+      });
+    });
 
     // pass callback in setState to ensure proper reconciliation OR componentDidUpdate
     if (!userProfile) {
       getProfile((err, profile) => {
         if (this.checkGrav(profile.picture) === true) {
+          console.log("this must be a normal account");
+          console.log(profile);
           profile.picture = defaultPicture;
-          this.setState({ profile, emailString: profile.name });
-          this.matchEmail(this.state.emailString);
-          this.getUser(this.state.userId);
-          // console.log(this.state);
+          axios.get(`${API_URL}/user`).then(response => {
+            console.log(response);
+            this.setState(
+              {
+                loading: false,
+                profile,
+                username: profile.name,
+                users: response.data
+              },
+              this.matchEmailForId(profile.name)
+            );
+          });
         }
         // google signins return usernames as "profile.nickname" (keolazy1).
         else if (this.checkGrav(profile.picture) === false) {
-          console.log("This must be a gmail account... ");
-          // this.setState({ profile, emailString: profile.nickname }, this.matchUsernameForId(this.state.emailString));
-          // this.matchEmail(this.state.emailString);
-          // this.getUser(this.state.userId);
+          console.log("This must be a GMAIL account... ");
           axios.get(`${API_URL}/user`).then(response => {
             console.log(response);
-            this.setState({
-              loading: false,
-              profile,
-              emailString: profile.nickname,
-              users: response.data
-            }, this.matchUsernameForId(this.state.emailString));
+            this.setState(
+              {
+                loading: false,
+                profile,
+                username: profile.nickname,
+                users: response.data
+              },
+              this.matchUsernameForId(this.state.username)
+            );
           });
         } else {
           console.log("if and else if, didn't happen....");
@@ -75,40 +80,53 @@ class Profile extends Component {
     } else {
       this.setState({ profile: userProfile });
     }
-  // End of componentWillUnount()
-  }
+  } // End of componentWillUnount()
 
-    axios.get(`${API_URL}/user`).then(response => {
-      console.log(response);
-      this.setState({
-        loading: false,
-        users: response.data
-      });
-      console.log(this.state.emailString);
-      this.matchEmail(this.state.emailString);
-      console.log(this.state); // users{3} is populated. emailString filled.
-      // this.matchEmail(this.state.emailString);
-    });
-  }
+  // componentDidUpdate(prevState) {
+  //   this.matchEmailForId();
+  //   if(this.state.userId !== prevState.userId) {
+  //     this.userFetch(this.state.userId)
+  //   }
+  // }
 
   checkGrav(str) {
     let containsGrav = /grav/.test(str);
-    // console.log(containsGrav);
     return containsGrav;
   }
 
   userFetch(id) {
     axios
-    .get(`${API_URL}/user/${id}`)
-    .then(response => { 
-      this.setState( { userId: id, user: response.data}, () => console.log(this.state))
-    })
-    .catch(error => console.log(error))
+      .get(`${API_URL}/user/${id}`)
+      .then(response => {
+        this.setState({ userId: id, user: response.data }, () =>
+          this.setState({ state: this.state })
+        );
+      })
+      .catch(error => console.log(error));
+  }
+
+  matchEmailForId(str) {
+    let uniqueId = -1;
+    const usersArray = this.state.users;
+    for (let i = 0; i < usersArray.length; i++) {
+      let userEmail = usersArray[i].email;
+      console.log(userEmail);
+      if (userEmail === str) {
+        console.log("YAY! found an email match with " + usersArray[i].email);
+        uniqueId = usersArray[i].id;
+        console.log(uniqueId);
+        this.userFetch(uniqueId);
+        break;
+      } else {
+        // uniqueId = usersArray[i].id;
+        // console.log(uniqueId);
+        console.log("Sorry, email didn't match");
+      }
+    }
   }
 
   // Function for gmail usernames: combine matchEmail() with getUser
   matchUsernameForId(string) {
-    console.log(string);
     let uniqueId = -1;
     const usersArray = this.state.users;
     for (let i = 0; i < usersArray.length; i++) {
@@ -117,26 +135,26 @@ class Profile extends Component {
       // console.log(userEmail.match(re));
       if (userEmail.match(re).length < 25) {
         console.log("YAY! found an email match with " + usersArray[i].email);
-        uniqueId = usersArray[i].id
-        console.log(uniqueId)
-        this.userFetch(uniqueId)
-      } else {
         uniqueId = usersArray[i].id;
         console.log(uniqueId);
+        this.userFetch(uniqueId);
+        break;
+      } else {
         console.log("Sorry, username didn't match");
       }
     }
-  
   }
-
 
   render() {
     const { profile, user } = this.state;
     // Handle conditional render code below
-    if(!this.state.user.balanceHours) {
+    if (!this.state.user.balanceHours) {
       return (
-        <div>Loading... If stats do not render, please try refreshing. {profile.name} - {user.balanceHours}</div>
-      )
+        <div>
+          Loading... If stats do not render, please try refreshing.{" "}
+          {profile.name} - {user.balanceHours}
+        </div>
+      );
     }
 
     return (

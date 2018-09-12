@@ -1,4 +1,5 @@
 // Equivalent to Index.js or Main.js
+// import React, { Component } from 'react';
 import React from "react";
 import { Redirect, Route, Router } from "react-router-dom";
 import App from "./App";
@@ -28,7 +29,8 @@ const handleAuthentication = ({ location }) => {
 
 
 export const makeMainRoutes = (props) => {
-  return (
+//  class makeMainRoutes extends Component {
+     return (
     <div>
       {this.profile}
       <Router history={history}>
@@ -37,7 +39,8 @@ export const makeMainRoutes = (props) => {
 
           <Route
             path="/home"
-            render={props => <Home auth={auth} {...props} />}
+            render={props => <Home auth={auth} {...props} /> 
+            }
           />
           
           <Route
@@ -118,5 +121,5 @@ export const makeMainRoutes = (props) => {
         </div>
       </Router>
     </div>
-  );
-};
+    );
+ }
