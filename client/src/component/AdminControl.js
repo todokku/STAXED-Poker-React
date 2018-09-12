@@ -8,6 +8,8 @@ import "../Profile/Profile.css";
 // import "../Admin/Admin.css";
 // import { Button } from "react-bootstrap";
 
+// If you want a function to be executed after the state change occurs, pass it in as a callback.
+// exp) this.setState({ message: "hello"}, function(){ console.log(this.state.message)})
 class AdminControl extends Component {
   constructor(props) {
     super(props);
