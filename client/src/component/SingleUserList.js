@@ -19,10 +19,10 @@ const SingleUserList = ({
   // Insert some Handler to AutoRefresh Page after updateState?
   return (
     <div className="body">
-      <h3>Checked In = Green - Checked out = Red</h3>
+      <h3>Admin Access  = Green - Member Access = Red</h3>
       <div
         className={`card ${
-          checkedIn === true ? "bg-success" : "bg-danger"
+          access === 'admin' ? "bg-success" : "bg-danger"
         } text-white`}
       >
         <div className="card-block">

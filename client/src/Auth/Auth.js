@@ -177,9 +177,7 @@ export default class Auth {
     return scopes.every(scope => grantedScopes.includes(scope));
   }
 
-  // getUserFromDB(email) {
-  //   const user = this.getUserFromDB
-  // }
+
 }
 
 // variable only Profile.js

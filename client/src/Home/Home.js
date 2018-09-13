@@ -19,6 +19,8 @@ class Home extends Component {
             <h1>Home</h1>
           </div>
         </div>
+        <div className="container text-center">User Options Below</div>
+        <div className="container text-center">Contact Form</div>
       </div>
     );
   }

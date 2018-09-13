@@ -13,7 +13,6 @@ class App extends Component {
     };
   }
   // If I retrieve profile: {} from auth0 here, do I change the NavItems to <Links>?
-
   postNewUser(userProfile) {
     console.log(userProfile);
     if (!userProfile) {
@@ -82,9 +81,7 @@ class App extends Component {
                 </NavItem>
               )}  */}
 
-              {isAuthenticated() &&
-              getUniqueId() === adminId && ( // remove this ( after uncommenting below.
-                  // userHasScopes(["write:messages"]) && (
+              {isAuthenticated() && (
                   <NavItem
                     className="btn-margin"
                     onClick={this.goTo.bind(this, "admin")}
@@ -92,6 +89,15 @@ class App extends Component {
                     Admin
                   </NavItem>
                 )}
+
+              {/* {isAuthenticated() && (
+                  <NavItem
+                    className="btn-margin"
+                    onClick={this.goTo.bind(this, "admin")}
+                  >
+                    Admin
+                  </NavItem>
+                )} */}
 
               {isAuthenticated() && (
                 <NavItem

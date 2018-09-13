@@ -27,7 +27,6 @@ const handleAuthentication = ({ location }) => {
   }
 };
 
-
 export const makeMainRoutes = (props) => {
 //  class makeMainRoutes extends Component {
      return (

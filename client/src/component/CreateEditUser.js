@@ -10,7 +10,7 @@ class SingleUserEdit extends Component {
 
     this.state = {
       id: props.id || "",
-      name: props.name || "",
+      name: props.name,
       email: props.email || "",
       access: props.access || "",
       balanceHours: props.balanceHours || "",
@@ -56,7 +56,7 @@ class SingleUserEdit extends Component {
           checkedIn: checkedIn
         })
         .then(() => {
-          this.props.updateState(email, access); // access was formerly is_done and evaluted to string 'true'
+          this.props.updateState(email, access);
           this.props.toggleEdit();
         });
     } else {
@@ -78,7 +78,8 @@ class SingleUserEdit extends Component {
   render() {
     const {
       access,
-      email,
+      // email,
+      name,
       phone,
       balanceHours,
       qualifierHours,
@@ -89,13 +90,13 @@ class SingleUserEdit extends Component {
         <div className="container-list">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">Email: {email}</label>
+              <label htmlFor="email">Name: {name}</label>
               <input
-                name="email"
+                name="name"
                 type="text"
                 className="form-control"
-                id="email"
-                value={email}
+                id="name"
+                value={name}
                 onChange={this.onChangeItem}
               />
             </div>
@@ -161,7 +162,7 @@ class SingleUserEdit extends Component {
               >
                 <option value="member">Member</option>
                 <option value="admin">Admin</option>
-                <option value="daily">Walk In</option>
+                {/* <option value="daily">Walk In</option>   */}
               </select>
             </div>
 
