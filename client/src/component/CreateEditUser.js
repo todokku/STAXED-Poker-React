@@ -86,7 +86,7 @@ class SingleUserEdit extends Component {
     } = this.state;
     return (
       <div className="body">
-        <div className="container-list">
+        <div className="container-form-edit">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
               <label htmlFor="email">Email: {email}</label>

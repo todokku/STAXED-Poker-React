@@ -29,7 +29,7 @@ export default class Auth {
     this.getProfile = this.getProfile.bind(this);
     this.getUniqueId = this.getUniqueId.bind(this);
     this.checkGrav = this.checkGrav.bind(this);
-    this.matchEmail = this.matchEmail.bind(this);
+    // this.matchEmail = this.matchEmail.bind(this);
     this.getUser = this.getUser.bind(this);
   }
   checkGrav(str) {
@@ -38,23 +38,23 @@ export default class Auth {
     return containsGrav;
   }
 
-  matchEmail(string, arr) {
-    console.log(string);
-    const usersArray = arr;
-    for (let i = 0; i < usersArray.length; i++) {
-      let userEmail = usersArray[i].email;
-      let re = new RegExp(string, "gi");
-      // console.log(userEmail.match(re));
-      if (userEmail.match(re)) {
-        console.log("YAY! found an email match with " + usersArray[i].email);
-        // set variable form instead of setState
-        const userId = usersArray[i].id;
-        return userId;
-      } else {
-        console.log("Sorry, no matches");
-      }
-    }
-  }
+  // matchEmail(string, arr) {
+  //   console.log(string);
+  //   const usersArray = arr;
+  //   for (let i = 0; i < usersArray.length; i++) {
+  //     let userEmail = usersArray[i].email;
+  //     let re = new RegExp(string, "gi");
+  //     // console.log(userEmail.match(re));
+  //     if (userEmail.match(re)) {
+  //       console.log("YAY! found an email match with " + usersArray[i].email);
+  //       // set variable form instead of setState
+  //       const userId = usersArray[i].id;
+  //       return userId;
+  //     } else {
+  //       console.log("Sorry, no matches");
+  //     }
+  //   }
+  // }
 
   getUser(input) {
     console.log("getUser being called");

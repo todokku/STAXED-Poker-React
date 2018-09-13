@@ -38,7 +38,7 @@ class SingleUser extends Component {
     }
     return (
       <div className="body">
-        <div className="container">
+        <div className="container-form">
           <UserCard
             email={this.state.user.email}
             name={this.state.user.name}

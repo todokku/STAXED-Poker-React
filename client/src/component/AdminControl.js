@@ -54,13 +54,11 @@ class AdminControl extends Component {
     if (this.state.loading) return <div>Component Loading...</div>;
 
     return (
-      <div className="body">
-        <div className="container-list">
-          <div>All Users List</div>
-          <ListUsers>
-            <div>{this.renderUsers()}</div>
-          </ListUsers>
-        </div>
+      <div className="container-list">
+        <div>All Users List</div>
+        <ListUsers>
+          <div>{this.renderUsers()}</div>
+        </ListUsers>
       </div>
     );
   }
