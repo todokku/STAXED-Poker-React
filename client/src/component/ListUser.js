@@ -13,22 +13,24 @@ const ListUser = ({
   checkedIn
 }) => {
   return (
-    <Link
-      to={`/control/${id}`}
-      className={`list-group-item ${
-        checkedIn === true ? "bg-success" : "bg-danger"
-      }
+    <div className="container-list-group">
+      <Link
+        to={`/control/${id}`}
+        className={`list-group-item ${
+          checkedIn === true ? "bg-success" : "bg-danger"
+        }
      text-black mb-3 d-flex justify-content-center align-items-center`}
-    >
-      <h3>id: {id}</h3>
-      <h3>Email: {email}</h3>
-      <h3>Name: {name}</h3>
-      <h3>Access: {access}</h3>
-      <h3>Phone: {phone}</h3>
-      <h3>Balance Hours: {balanceHours}</h3>
-      <h3>Qualifier Hours: {qualifierHours}</h3>
-      <h3>CheckIn Status: {checkedIn}</h3>
-    </Link>
+      >
+        <h3>id: {id}</h3>
+        <h3>Email: {email}</h3>
+        <h3>Name: {name}</h3>
+        <h3>Access: {access}</h3>
+        <h3>Phone: {phone}</h3>
+        <h3>Balance Hours: {balanceHours}</h3>
+        <h3>Qualifier Hours: {qualifierHours}</h3>
+        <h3>CheckIn Status: {checkedIn}</h3>
+      </Link>
+    </div>
   );
 };
 

@@ -25,13 +25,13 @@ class Profile extends Component {
   }
   // Trigger a child component to re-render.
   // Use this to trigger child to rerender when parent state updates.
-  componentWillReceiveProps(props) {
-    const { refresh, id } = this.props;
-    if(this.props !== refresh ) {
-      this.fetchData(id)
-        .then(this.refreshUserList)
-    }
-  }
+  // componentWillReceiveProps(props) {
+  //   const { refresh, id } = this.props;
+  //   if(this.props !== refresh ) {
+  //     this.fetchData(id)
+  //       .then(this.refreshUserList)
+  //   }
+  // }
 
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
@@ -136,9 +136,10 @@ class Profile extends Component {
     for (let i = 0; i < usersArray.length; i++) {
       let userEmail = usersArray[i].email;
       let re = new RegExp(string, "gi");
-      // console.log(userEmail.match(re));
+      console.log(userEmail.match(re));
       if (userEmail.match(re).length < 25) {
-        console.log("YAY! found an email match with ", usersArray[i].email);
+        console.log(this.state);
+        console.log("YAY! found an email match with " + usersArray[i].email);
         uniqueId = usersArray[i].id;
         console.log(uniqueId);
         this.userFetch(uniqueId);
@@ -167,39 +168,42 @@ class Profile extends Component {
     }
 
     return (
-      <div className="body">
-        <div className="container">
-          <div className="profile">
-            <img
-              src={profile.picture}
-              className="profile-default"
-              alt="profile"
-            />
+      <div>
+        <div className="profile">
+          <img
+            src={profile.picture}
+            className="profile-default"
+            alt="profile"
+          />
 
-            <div className="details">
-              <ListGroup>
-                {/* <div className="userdatalist"> */}
-                <div className="username">
-                  {/* Can fix the default profile picture sizing issue
+          <div className="details">
+            <ListGroup>
+              {/* <div className="userdatalist"> */}
+              <div className="username">
+                {/* Can fix the default profile picture sizing issue
                       by resizing the src/images/user-solid.png manually  */}
-                  <i className="far fa-user-circle"> {profile.name}</i>
+                <i className="far fa-user-circle"> {profile.name}</i>
+              </div>
+              {/* Changed profile.nickname to profile.name */}
+              <div className="userdatalist">
+                <div className="userbalance">
+                  <i className="far fa-clock"> Balance: {user.balanceHours}</i>
                 </div>
-                {/* Changed profile.nickname to profile.name */}
-                <div className="userdatalist">
-                  <div className="userbalance">
-                    <i className="far fa-clock">
-                      {" "}
-                      Balance: {user.balanceHours}
-                    </i>
-                  </div>
-                  <div className="userqualifier">
-                    <i className="far fa-thumbs-up">
-                      Qualifier: {user.qualifierHours}
-                    </i>
-                  </div>
+                <div className="userqualifier">
+                  {/* <i className="far fa-heart"> */}
+                  {/* <i className="far fa-bookmark"> */}
+                  {/* <i className="far fa-bell"> */}
+                  <i className="far fa-thumbs-up">
+                    {" "}
+                    {/* <button class="pulse-button"> */}
+                    {/* <a class="btn-floating pulse"><i class="material-icons">menu</i></a> */}
+                    Qualifier: {user.qualifierHours}
+                  </i>
+                  {/* </button> */}
                 </div>
-              </ListGroup>
-            </div>
+              </div>
+              {/* </div> */}
+            </ListGroup>
           </div>
         </div>
       </div>

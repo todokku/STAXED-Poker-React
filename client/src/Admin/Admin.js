@@ -49,8 +49,8 @@ class Admin extends Component {
     }
 
     return (
-      <div className="body">
-        <div className="container">
+      <div>
+        <div className="container-list">
           <h2>You are an Admin!</h2>
           <p>
             Only users who have a <code>scope</code> of{" "}

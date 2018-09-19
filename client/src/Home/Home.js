@@ -1,26 +1,18 @@
 import React, { Component } from "react";
 // import { Jumbotron, Button } from "react-bootstrap";
-import "../Home/Home.css";
-
+import "../Profile/Profile.css";
 
 class Home extends Component {
-
   render() {
     // const { isAuthenticated, login } = this.props.auth;
     const { isAuthenticated } = this.props.auth;
     return (
-      <div>
-        <div className="jumbotron vertical-center container-fluid">
-          <div className="container text-center">
-            <div className="container">
-              {isAuthenticated() && <h4>You are logged in!</h4>}
-              {!isAuthenticated() && <div />}
-            </div>
-            <h1>Home</h1>
-          </div>
-        </div>
-        <div className="container text-center">User Options Below</div>
-        <div className="container text-center">Contact Form</div>
+      <div className="container">
+        {isAuthenticated() && <h4>You are logged in!</h4>}
+        {!isAuthenticated() && <div />}
+        <h1>RIVER CITY</h1>
+        <br />
+        <h2>CARD ROOM</h2>
       </div>
     );
   }

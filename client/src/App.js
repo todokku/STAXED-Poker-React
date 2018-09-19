@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import "./App.css";
+import "./Profile/Profile.css";
 
 // When user logins and arrives at App, can I post user?
 class App extends Component {
@@ -42,34 +43,37 @@ class App extends Component {
     const { isAuthenticated, getUniqueId, adminId } = this.props.auth;
 
     return (
-      <div className="header-nav">
-        <Navbar inverse fluid collapseOnSelect>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a href="/home">Stacked App</a>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
+      <header id="showcase">
+        <div className="header-nav">
+          <Navbar inverse fluid collapseOnSelect>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <a href="/home">
+                  <img src={require("./images/rivercitylogo.png")} alt="small logo" />
+                </a>
+              </Navbar.Brand>
+              <Navbar.Toggle />
+            </Navbar.Header>
 
-          <Navbar.Collapse>
-            <Nav className="navbar-collapse" pullRight>
-              <NavItem
-                className="btn-margin"
-                onClick={this.goTo.bind(this, "home")}
-              >
-                Home - (Public View - No Signin required)
-              </NavItem>
-
-              {isAuthenticated() && (
+            <Navbar.Collapse>
+              <Nav className="navbar-collapse" pullRight>
                 <NavItem
                   className="btn-margin"
-                  onClick={this.goTo.bind(this, "profile")}
+                  onClick={this.goTo.bind(this, "home")}
                 >
-                  Profile
+                  Home - (Public View - No Signin required)
                 </NavItem>
-              )}
 
-              {/* {isAuthenticated() && (
+                {isAuthenticated() && (
+                  <NavItem
+                    className="btn-margin"
+                    onClick={this.goTo.bind(this, "profile")}
+                  >
+                    Profile
+                  </NavItem>
+                )}
+
+                {/* {isAuthenticated() && (
                 <NavItem>
                   <li
                     bsStyle="primary"
@@ -81,55 +85,46 @@ class App extends Component {
                 </NavItem>
               )}  */}
 
-              {isAuthenticated() && (
+                {isAuthenticated() &&
+                getUniqueId() === adminId && ( // remove this ( after uncommenting below.
+                    // userHasScopes(["write:messages"]) && (
+                    <NavItem
+                      className="btn-margin"
+                      onClick={this.goTo.bind(this, "admin")}
+                    >
+                      Admin
+                    </NavItem>
+                  )}
+
+                {isAuthenticated() && (
                   <NavItem
+                    id="qsLogoutBtn"
                     className="btn-margin"
-                    onClick={this.goTo.bind(this, "admin")}
+                    onClick={this.logout.bind(this)}
                   >
-                    Admin
+                    Log Out
                   </NavItem>
                 )}
-
-              {/* {isAuthenticated() && (
+                {!isAuthenticated() && (
                   <NavItem
+                    id="qsLoginBtn"
                     className="btn-margin"
-                    onClick={this.goTo.bind(this, "admin")}
+                    onClick={this.login.bind(this)}
                   >
-                    Admin
+                    Log In
                   </NavItem>
-                )} */}
-
-              {isAuthenticated() && (
-                <NavItem
-                  id="qsLogoutBtn"
-                  className="btn-margin"
-                  onClick={this.logout.bind(this)}
-                >
-                  Log Out
-                </NavItem>
-              )}
-              {!isAuthenticated() && (
-                <NavItem
-                  id="qsLoginBtn"
-                  className="btn-margin"
-                  onClick={this.login.bind(this)}
-                >
-                  Log In
-                </NavItem>
-              )}
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-
-        <div className="footer">
-          <div className="footer-content">
-            2018 ©{/* <div className="icon-spacing"> */}
-            {/* <i class="fab fa-twitter-square" />
-            <i class="fab fa-facebook" /> */}
-            {/* </div> */}
-          </div>
+                )}
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
         </div>
-      </div>
+
+        {/* <div className="footer">
+          <div className="footer-content">
+            2018 ©
+          </div>
+        </div> */}
+      </header>
     );
   }
 }
