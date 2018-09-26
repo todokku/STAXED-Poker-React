@@ -17,7 +17,7 @@ export default class Auth {
     scope: this.requestedScopes
   });
   // my keolazy1 adminId. consider using an array for steve and employees
-  adminId = "google-oauth2|113651650652944605346";
+  adminId = "google-oauth2|116920368241262075078";
 
   constructor() {
     this.login = this.login.bind(this);
@@ -31,30 +31,15 @@ export default class Auth {
     this.checkGrav = this.checkGrav.bind(this);
     // this.matchEmail = this.matchEmail.bind(this);
     this.getUser = this.getUser.bind(this);
+    this.userFetch = this.userFetich.bind(this);
+    this.matchEmailForId = this.matchEmailForId.bind(this);
+    this.matchUsernameForId = this.matchUsernameForId.bind(this);
   }
+  
   checkGrav(str) {
     let containsGrav = /grav/.test(str);
-    // console.log(containsGrav);
     return containsGrav;
   }
-
-  // matchEmail(string, arr) {
-  //   console.log(string);
-  //   const usersArray = arr;
-  //   for (let i = 0; i < usersArray.length; i++) {
-  //     let userEmail = usersArray[i].email;
-  //     let re = new RegExp(string, "gi");
-  //     // console.log(userEmail.match(re));
-  //     if (userEmail.match(re)) {
-  //       console.log("YAY! found an email match with " + usersArray[i].email);
-  //       // set variable form instead of setState
-  //       const userId = usersArray[i].id;
-  //       return userId;
-  //     } else {
-  //       console.log("Sorry, no matches");
-  //     }
-  //   }
-  // }
 
   getUser(input) {
     console.log("getUser being called");
@@ -73,15 +58,13 @@ export default class Auth {
   getUniqueId() {
     if (!this.userProfile) {
       this.getProfile((err, profile) => {
-        console.log(profile.sub);
         const uniqueId = profile.sub;
-        console.log(uniqueId);
+        console.log("userProfile exists @ Auth:", uniqueId);
         return uniqueId;
       });
     } else {
-      console.log("No userProfile");
       const uniqueId = this.userProfile.sub;
-      console.log(uniqueId);
+      console.log("No userProfile", uniqueId);
       return uniqueId;
     }
   }
@@ -140,6 +123,66 @@ export default class Auth {
     });
   }
 
+  // Use to decide what to POST. "nickname" or "username"
+  checkGrav(str) {
+    let containsGrav = /grav/.test(str);
+    return containsGrav;
+  }
+
+    // handleUserFetchChange? Used in both matchEmail and matchUsername
+    userFetch(id) {
+      axios
+        .get(`${API_URL}/user/${id}`)
+        .then(response => {
+          this.setState({ userId: id, user: response.data }, () =>
+            this.setState({ state: this.state })
+          );
+        })
+        .catch(error => console.log(error));
+    }
+  
+    // match function for email.
+    matchEmailForId(str) {
+      let uniqueId = -1;
+      const usersArray = this.state.users;
+      for (let i = 0; i < usersArray.length; i++) {
+        let userEmail = usersArray[i].email;
+        console.log(userEmail);
+        if (userEmail === str) {
+          console.log("YAY! found an email match with " + usersArray[i].email);
+          uniqueId = usersArray[i].id;
+          console.log(uniqueId);
+          this.userFetch(uniqueId);
+          break;
+        } else {
+          // uniqueId = usersArray[i].id;
+          // console.log(uniqueId);
+          console.log("Sorry, email didn't match");
+        }
+      }
+    }
+  
+    // match function for gmail usernames: combine matchEmail() with getUser
+    matchUsernameForId(string) {
+      let uniqueId = -1;
+      const usersArray = this.state.users;
+      for (let i = 0; i < usersArray.length; i++) {
+        let userEmail = usersArray[i].email;
+        let re = new RegExp(string, "gi");
+        // console.log(userEmail.match(re));
+        if (userEmail.match(re).length < 25) {
+          console.log("state @ matchUsernameForId: ", this.state);
+          console.log("YAY! found an email match with " + usersArray[i].email);
+          uniqueId = usersArray[i].id;
+          console.log(uniqueId);
+          this.userFetch(uniqueId);
+          break;
+        } else {
+          console.log("Sorry, username didn't match");
+        }
+      }
+    }
+
   // Make Post auth0 user to database function here.
   postNewUser(userProfile) {
     console.log(userProfile);
@@ -180,97 +223,3 @@ export default class Auth {
 
 }
 
-// variable only Profile.js
-
-// componentWillMount() {
-//   const { userProfile, getProfile, checkGrav, matchEmail, getUser, userId, users } = this.props.auth;
-//   // Imported from line 6
-//   console.log(this.props.auth);
-//   const defaultPicture = logo;
-
-//   if (!userProfile) {
-
-//     axios.get(`${API_URL}/user`)
-//     .then(response => {
-//       console.log(response);
-//       const users = response.data;
-//       this.state.users = users;
-//     });
-
-//     getProfile((err, profile) => {
-//       if (this.checkGrav(profile.picture) === true) {
-//         profile.picture = defaultPicture;
-//         // set variable form instead of setState
-//         const newProfile = profile;
-//         console.log(newProfile)
-//         const emailString = profile.name
-//         console.log(emailString) // prints nathan.keolasy@gmail.com
-//         const userId = this.matchEmail(emailString, users);
-//         console.log(userId);
-//         const user = this.getUser(userId)
-
-//         this.setState({profile: profile, users: users, emailString: emailString, userId: userId, user: {}})
-//         console.log(this.state)
-//       }
-//       // google signins return usernames as "profile.nickname" (keolazy1).
-//       else if (checkGrav(profile.picture) === false) {
-//         console.log("This must be a gmail account... ");
-//         // this.setState({ profile, emailString: profile.nickname });
-//         // set variable form instead of setState
-//         const newProfile = profile;
-//         const emailString = profile.nickname;
-//         const userId = this.matchEmail(emailString);
-//         const user = this.getUser(userId);
-//         this.setState({profile: profile, users: users, emailString: emailString, userId: userId, user: {}})
-//       } else {
-//         console.log("if and else if, didn't happen....");
-//         // set variable form instead of setState
-//         const profile = profile
-//       }
-//     });
-//   } else {
-//     // this.setState({ profile: userProfile });
-//     // set variable form instead of setState
-//     const profile = userProfile
-//     // this.setState({ profile: userProfile })
-//   }
-
-// }
-
-// checkGrav(str) {
-//   let containsGrav = /grav/.test(str);
-//   // console.log(containsGrav);
-//   return containsGrav;
-// }
-
-// matchEmail(string) {
-//   console.log(string);
-//   const usersArray = this.state.users;
-//   for (let i = 0; i < usersArray.length; i++) {
-//     let userEmail = usersArray[i].email;
-//     let re = new RegExp(string, "gi");
-//     // console.log(userEmail.match(re));
-//     if (userEmail.match(re)) {
-//       console.log("YAY! found an email match with " + usersArray[i].email);
-//       // set variable form instead of setState
-//       const userId = usersArray[i].id;
-//       return userId
-//     } else {
-//       console.log("Sorry, no matches");
-//     }
-//   }
-// }
-
-// getUser(input) {
-//   console.log("getUser being called");
-//   const id = input;
-//   axios
-//     .get(`${API_URL}/user/${id}`)
-//     .then(response => {
-//       console.log(response.data); // returns (1) user object that matches auth.
-//       // set variable form instead of setState
-//       const user = response.data;
-//       return user;
-//     })
-//     .catch(error => console.log(error));
-// }

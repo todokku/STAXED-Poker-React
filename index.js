@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({
   extended: true 
 }))
 
+// app.use('/', routes);
 app.use('/api', apiRoute);
 
 // Production Use

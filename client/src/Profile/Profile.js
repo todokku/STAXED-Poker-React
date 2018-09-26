@@ -9,6 +9,7 @@ import logo from "../images/user-solid.png";
 class Profile extends Component {
   constructor(props) {
     super(props);
+    console.log("Profile props:", props)
     this.state = {
       profile: {},
       users: {},
@@ -36,7 +37,8 @@ class Profile extends Component {
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
     const defaultPicture = logo;
-    console.log(this.props.auth);
+    // console.log(this.props.users)
+    console.log("Profile auth: ", this.props.auth);
 
     // Async fetch. if/else logic should only run after this.
     axios.get(`${API_URL}/user`).then(response => {
@@ -50,11 +52,10 @@ class Profile extends Component {
     if (!userProfile) {
       getProfile((err, profile) => {
         if (this.checkGrav(profile.picture) === true) {
-          console.log("this must be a normal account");
-          console.log(profile);
+          console.log("this must be a normal account", profile);
           profile.picture = defaultPicture;
           axios.get(`${API_URL}/user`).then(response => {
-            console.log(response);
+            console.log("No userProfile fetch: ", response);
             this.setState(
               {
                 loading: false,
@@ -89,7 +90,8 @@ class Profile extends Component {
     } else {
       this.setState({ profile: userProfile });
     }
-  } // End of componentWillUnount()
+  } 
+  // End of componentWillUnount()
 
 
   checkGrav(str) {
@@ -97,7 +99,7 @@ class Profile extends Component {
     return containsGrav;
   }
 
-  // handleUserFetchChange?
+  // handleUserFetchChange? Used in both matchEmail and matchUsername
   userFetch(id) {
     axios
       .get(`${API_URL}/user/${id}`)
@@ -109,6 +111,7 @@ class Profile extends Component {
       .catch(error => console.log(error));
   }
 
+  // match function for email.
   matchEmailForId(str) {
     let uniqueId = -1;
     const usersArray = this.state.users;
@@ -129,16 +132,16 @@ class Profile extends Component {
     }
   }
 
-  // Function for gmail usernames: combine matchEmail() with getUser
+  // match function for gmail usernames: combine matchEmail() with getUser
   matchUsernameForId(string) {
     let uniqueId = -1;
     const usersArray = this.state.users;
     for (let i = 0; i < usersArray.length; i++) {
       let userEmail = usersArray[i].email;
       let re = new RegExp(string, "gi");
-      console.log(userEmail.match(re));
+      // console.log(userEmail.match(re));
       if (userEmail.match(re).length < 25) {
-        console.log(this.state);
+        console.log("state @ matchUsernameForId: ", this.state);
         console.log("YAY! found an email match with " + usersArray[i].email);
         uniqueId = usersArray[i].id;
         console.log(uniqueId);
@@ -151,9 +154,11 @@ class Profile extends Component {
   }
 
   // handle change
-  // refreshUser() {
+  refreshUser() {
+    console.log("handled change")
+  }
 
-  // }
+  // component.forceUpdate(callback)
 
   render() {
     const { profile, user } = this.state;

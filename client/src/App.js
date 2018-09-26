@@ -3,6 +3,9 @@ import React, { Component } from "react";
 import { Nav, Navbar, NavItem } from "react-bootstrap";
 import "./App.css";
 import "./Profile/Profile.css";
+import axios from "axios";
+import { API_URL } from "./constants";
+import logo from "./images/user-solid.png";
 
 // When user logins and arrives at App, can I post user?
 class App extends Component {
@@ -13,18 +16,42 @@ class App extends Component {
       profile: {}
     };
   }
-  // If I retrieve profile: {} from auth0 here, do I change the NavItems to <Links>?
-  postNewUser(userProfile) {
-    console.log(userProfile);
-    if (!userProfile) {
-      this.getProfile((err, profile) => {
-        this.setState({ profile });
-      });
-    } else {
-      this.setState({ profile: userProfile });
-    }
-    this.goTo.bind(this, "profile");
+
+  //   componentWillMount() {
+  //   // const {userProfile, getProfile } = this.props.auth;
+  //   // const defaultPicture = logo;
+  //   console.log('App Auth: ', this.props.auth)
+
+  //   axios.get(`${API_URL}/user`)
+  //   .then(response => {
+  //     console.log('Home Res:', response)
+  //     this.setState({
+  //       loading:false,
+  //       users: response.data
+  //     }, console.log(this.state))
+  //   })
+  // }
+
+  userNameCheck() {
+    let userNameExists = false;
+    for(let i = 0; i < this.state.users.length; i++) {
+      // profile.nickname is for gmail signins ONLY
+      if(this.state.users.username[i] === this.state.profile.nickname) {
+        console.log('Do not post b/c username exists already')
+        userNameExists = true;
+      } else if(this.state.users.username[i] !== this.profile.nickname) {
+        console.log("username does not match this iteration")
+      }
+      // If loop does not return a match. 
+      if(userNameExists === false) {
+        axios.post(`${API_URL}/user`, {
+          username: this.state.profile.nickname,
+          name: this.state.profile.name
+        })
+      }
+    }  
   }
+  // If I retrieve profile: {} from auth0 here, do I change the NavItems to <Links>?
 
   goTo(route) {
     this.props.history.replace(`/${route}`);
@@ -61,13 +88,14 @@ class App extends Component {
                   className="btn-margin"
                   onClick={this.goTo.bind(this, "home")}
                 >
-                  Home - (Public View - No Signin required)
+                  Home 
                 </NavItem>
 
                 {isAuthenticated() && (
                   <NavItem
                     className="btn-margin"
                     onClick={this.goTo.bind(this, "profile")}
+                    users={this.state.users}
                   >
                     Profile
                   </NavItem>

@@ -13,8 +13,9 @@ import history from "./history";
 import AdminControl from './component/AdminControl';
 import SingleUser from './component/SingleUser';
 // import Main from "./component/Main";
-// import { API_URL } from "./constants";
-// import axios from "axios";
+import axios from "axios";
+import { API_URL } from "./constants";
+import logo from "./images/user-solid.png";
 
 const auth = new Auth();
 
@@ -26,6 +27,59 @@ const handleAuthentication = ({ location }) => {
     auth.handleAuthentication();
   }
 };
+
+const userNameCheck = () => {
+  const {userProfile, getProfile, checkGrav } = this.auth;
+  const defaultPicture = logo;
+  let userNameExists = false;
+  this.setState({
+    loading: false,
+    users: {}
+  })
+
+  if (!userProfile) {
+    getProfile((err, profile) => {
+      if (this.checkGrav(profile.picture) === true) {
+        console.log("this must be a normal account", profile);
+        profile.picture = defaultPicture;
+        axios.get(`${API_URL}/user`).then(response => {
+          console.log("No userProfile fetch: ", response);
+          this.setState(
+            {
+              loading: false,
+              profile,
+              username: profile.name,
+              users: response.data
+            },
+            this.matchEmailForId(profile.name)
+          );
+        });
+      }
+      // google signins return usernames as "profile.nickname" (keolazy1).
+      else if (this.checkGrav(profile.picture) === false) {
+        console.log("This must be a GMAIL account... ");
+        axios.get(`${API_URL}/user`).then(response => {
+          console.log(response);
+          this.setState(
+            {
+              loading: false,
+              profile,
+              username: profile.nickname,
+              users: response.data
+            },
+            this.matchUsernameForId(this.state.username)
+          );
+        });
+      } else {
+        console.log("if and else if, didn't happen....");
+        this.setState({ profile });
+      }
+    });
+  } else {
+    this.setState({ profile: userProfile });
+  }
+
+} // end of userNameCheck()
 
 export const makeMainRoutes = (props) => {
 //  class makeMainRoutes extends Component {
@@ -48,7 +102,7 @@ export const makeMainRoutes = (props) => {
               !auth.isAuthenticated() ? (
                 <Redirect to="/home" />
               ) : (
-                <Profile auth={auth} {...props} />
+                <Profile auth={auth} {...props} usernameCheck={userNameCheck}/>
               )
             }
           />
