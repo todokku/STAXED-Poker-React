@@ -13,11 +13,7 @@ class SingleUser extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({ _isMounted: true})
-  // }
-
-  componentWillMount() {
+  componentDidMount() {
     const id = this.props.match.params.id;
     console.log("hello");
     axios.get(`${API_URL}/control/${id}`).then(res => {

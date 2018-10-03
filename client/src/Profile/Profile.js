@@ -23,6 +23,15 @@ class Profile extends Component {
     this.matchUsernameForId = this.matchUsernameForId.bind(this);
     this.userFetch = this.userFetch.bind(this);
   }
+  // Trigger a child component to re-render.
+  // Use this to trigger child to rerender when parent state updates.
+  // componentWillReceiveProps(props) {
+  //   const { refresh, id } = this.props;
+  //   if(this.props !== refresh ) {
+  //     this.fetchData(id)
+  //       .then(this.refreshUserList)
+  //   }
+  // }
 
   componentWillMount() {
     const { userProfile, getProfile } = this.props.auth;
@@ -82,18 +91,13 @@ class Profile extends Component {
     }
   } // End of componentWillUnount()
 
-  // componentDidUpdate(prevState) {
-  //   this.matchEmailForId();
-  //   if(this.state.userId !== prevState.userId) {
-  //     this.userFetch(this.state.userId)
-  //   }
-  // }
 
   checkGrav(str) {
     let containsGrav = /grav/.test(str);
     return containsGrav;
   }
 
+  // handleUserFetchChange?
   userFetch(id) {
     axios
       .get(`${API_URL}/user/${id}`)
@@ -145,6 +149,11 @@ class Profile extends Component {
       }
     }
   }
+
+  // handle change
+  // refreshUser() {
+
+  // }
 
   render() {
     const { profile, user } = this.state;

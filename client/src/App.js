@@ -14,7 +14,6 @@ class App extends Component {
     };
   }
   // If I retrieve profile: {} from auth0 here, do I change the NavItems to <Links>?
-
   postNewUser(userProfile) {
     console.log(userProfile);
     if (!userProfile) {
@@ -50,7 +49,7 @@ class App extends Component {
             <Navbar.Header>
               <Navbar.Brand>
                 <a href="/home">
-                  <img src={require("./images/rivercitylogo.png")} />
+                  <img src={require("./images/rivercitylogo.png")} alt="small logo" />
                 </a>
               </Navbar.Brand>
               <Navbar.Toggle />

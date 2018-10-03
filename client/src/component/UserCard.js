@@ -14,6 +14,7 @@ class UserCard extends Component {
       access: props.access,
       balanceHours: props.balanceHours,
       qualifierHours: props.qualifierHours,
+      checkedIn: props.checkedIn
     };
     this.onEdit = this.onEdit.bind(this);
     this.updateState = this.updateState.bind(this);

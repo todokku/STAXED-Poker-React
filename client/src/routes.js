@@ -27,10 +27,16 @@ const handleAuthentication = ({ location }) => {
   }
 };
 
+<<<<<<< HEAD
 // Test out putting react-pose <Routes /> here
 export const makeMainRoutes = props => {
   //  class makeMainRoutes extends Component {
   return (
+=======
+export const makeMainRoutes = (props) => {
+//  class makeMainRoutes extends Component {
+     return (
+>>>>>>> 71dc849ac5a7458bc90a277fc5de7268163cdae4
     <div>
       {this.profile}
       <Router history={history}>

@@ -32,8 +32,6 @@ router.get('/:id', (req, res) =>
 		})
 )
 
-// IDEMOPOTENCE: is gonna be the say no matter how many times you call on something. 
-
 // PATCH only modifies the one we submit in the body.
 router.patch('/:id', function(req, res) {
 	db('users')
@@ -44,6 +42,7 @@ router.patch('/:id', function(req, res) {
 			res.send(data)
 		})
 })
+
 
 // PUT should replace everything with whats in body + replacing the rest with null.
 router.put('/:id', function(req,res) {
@@ -71,16 +70,6 @@ router.delete('/:id', function(req,res) {
 		.del()
 		.then(result => {
 			res.json({ success: true })
-			// if(result.access == 'admin') {
-			// 	knex('users')
-			// 		.where({ id: req.params.id })
-			// 		.del()
-			// 		.then(postDelete => {
-			// 			res.status(200).json("User Succesfully Deleted");
-			// 		});
-			// } else {
-			// 	res.status(400).json("You Need Admin Privileges to Delete a User");
-			// }
 		});
 });
 

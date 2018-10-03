@@ -22,7 +22,7 @@ const SingleUserList = ({
       <h5>Checked In = Green - Checked out = Red</h5>
       <div
         className={`card ${
-          checkedIn === true ? "bg-success" : "bg-danger"
+          access === 'admin' ? "bg-success" : "bg-danger"
         } text-white`}
       >
         <div className="card-block">
