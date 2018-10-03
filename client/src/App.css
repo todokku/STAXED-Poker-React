@@ -12,6 +12,9 @@
   min-height: 70px;
   font-family: "Oxygen", sans-serif;
   font-size: 16px;
+  /* filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  opacity: 0; */
 }
 
 a img {

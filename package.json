@@ -30,7 +30,8 @@
     "express-session": "^1.15.6",
     "knex": "^0.15.2",
     "lodash": "^4.17.10",
-    "pg": "^7.4.3"
+    "pg": "^7.4.3",
+    "react-pose": "^3.3.4"
   },
   "devDependencies": {
     "concurrently": "^4.0.1",
