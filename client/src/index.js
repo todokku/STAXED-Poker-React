@@ -1,10 +1,8 @@
-// Boilerplate
-// import makeMainRoutes from './routes';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { makeMainRoutes } from './routes';
-// import Routes from './routes';
+// import Routez from './Routez';
 
 const routes = makeMainRoutes();
 
