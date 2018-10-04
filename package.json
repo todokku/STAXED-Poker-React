@@ -31,7 +31,11 @@
     "knex": "^0.15.2",
     "lodash": "^4.17.10",
     "pg": "^7.4.3",
+<<<<<<< HEAD
     "react-pure-lifecycle": "^3.0.0"
+=======
+    "react-pose": "^3.3.4"
+>>>>>>> fb2619023a3215400f0f4206d51d416a6cedba64
   },
   "devDependencies": {
     "concurrently": "^4.0.1",

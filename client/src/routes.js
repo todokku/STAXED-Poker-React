@@ -10,12 +10,15 @@ import Admin from "./Admin/Admin";
 import Callback from "./Callback/Callback";
 import Auth from "./Auth/Auth";
 import history from "./history";
-import AdminControl from './component/AdminControl';
-import SingleUser from './component/SingleUser';
-// import User from './User/User';
-// const user = new User();
+import AdminControl from "./component/AdminControl";
+import SingleUser from "./component/SingleUser";
+// import Main from "./component/Main";
+// import { API_URL } from "./constants";
+// import axios from "axios";
+
 const auth = new Auth();
 
+// Make payload arrive here so we can pass it down to all neccessary components.
 // Consider making App.js handle all the profile requests.
 const handleAuthentication = ({ location }) => {
   if (/access_token|id_token|error/.test(location.hash)) {
@@ -23,8 +26,10 @@ const handleAuthentication = ({ location }) => {
   }
 };
 
-export const makeMainRoutes = (props) => {
-     return (
+// Test out putting react-pose <Routes /> here
+export const makeMainRoutes = props => {
+  //  class makeMainRoutes extends Component {
+  return (
     <div>
       {this.profile}
       <Router history={history}>
@@ -33,10 +38,11 @@ export const makeMainRoutes = (props) => {
 
           <Route
             path="/home"
-            render={props => <Home auth={auth} {...props} /> 
-            }
+            render={({ location, props }) => (
+              <Home auth={auth} {...props} location={location} />
+            )}
           />
-          
+
           <Route
             path="/profile"
             render={props =>
@@ -47,7 +53,6 @@ export const makeMainRoutes = (props) => {
               )
             }
           />
-
           <Route
             path="/ping"
             render={props =>
@@ -58,7 +63,6 @@ export const makeMainRoutes = (props) => {
               )
             }
           />
-
           <Route
             path="/admin"
             render={props =>
@@ -70,10 +74,9 @@ export const makeMainRoutes = (props) => {
               )
             }
           />
-
           <Route
             path="/admin/control"
-            render={props => 
+            render={props =>
               !auth.isAuthenticated() ? (
                 <Redirect to="/home" />
               ) : (
@@ -82,13 +85,15 @@ export const makeMainRoutes = (props) => {
             }
           />
 
-          <Route 
-            path='/control/:id' exact
-            render={props => 
+          <Route
+            path="/control/:id"
+            exact
+            render={props =>
               !auth.isAuthenticated() ? (
                 <Redirect to="/home" />
               ) : (
-              <SingleUser {...props} /> )
+                <SingleUser {...props} />
+              )
             }
           />
 
@@ -101,9 +106,7 @@ export const makeMainRoutes = (props) => {
             : ( <Redirect to="/admin" />)
             }
           /> */}
-
           {/* <Route path='/user/new' component={CreateUser} /> */}
-
           <Route
             path="/callback"
             render={props => {
@@ -111,7 +114,6 @@ export const makeMainRoutes = (props) => {
               return <Callback {...props} />;
             }}
           />
-
         </div>
       </Router>
     </div>
