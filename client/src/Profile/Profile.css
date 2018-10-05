@@ -60,6 +60,7 @@ text {
   flex-direction: column;
   position: absolute;
   overflow-x: hidden;
+  top: 0;
 }
 
 #showcase h1 {
@@ -94,6 +95,11 @@ section::before {
   opacity: 0.5;
   background: url(../images/landing2.png) no-repeat;
 } */
+
+#container{
+  height: 100vh;
+  margin-top: 50px;
+}
 
 .container {
   width: 97vw;
@@ -306,10 +312,21 @@ section::before {
   user-select: none;
 }
 
+#content-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Starts */
 .block {
   display: flex;
-  width: 95vw;
+  /* width: 95vw; */
+  width: 100%;
+  margin: 0;
   border: none;
   background-color: #000;
   padding: 14px 26px;
@@ -332,8 +349,10 @@ section::before {
   flex-direction: row;
   justify-content: center;
   align-self: center;
-  margin-top: -4.5vh;
-  width: 82.5vw;
+  /* margin-top: -4.5vh; */
+  width: 100vw;
+  position: absolute;
+  top: 0;
 }
 
 .button-bottom {
@@ -346,8 +365,10 @@ section::before {
   flex-direction: row;
   justify-content: center;
   align-self: center;
-  margin-top: 20vh;
-  width: 82.5vw;
+  /* margin-top: 20vh; */
+  width: 100vw;
+  position: absolute;
+  bottom: 50px;
 }
 
 .button-left {
@@ -360,11 +381,7 @@ section::before {
   flex-direction: row;
   justify-content: center;
   align-self: center; */
-  float: left;
-  margin-left: -38vw;
   /* margin-right: 300px; */
-  width: 90vw;
-  position: absolute;
 }
 
 .button-right {
@@ -373,15 +390,12 @@ section::before {
   font-size: 22px;
   margin: auto;
   color: #fff;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: center;
-  align-self: center;
-  float: right;
-  margin-left: -53.5vw;
+  align-self: center; */
   /* margin-bottom: 1500px; */
-  width: 90vw;
-  position: absolute;
+ 
 }
 
 .btn-left {
@@ -410,35 +424,35 @@ section::before {
 } */
 
 .rotate-left {
-  /* Safari */
-  -webkit-transform: rotate(-90deg);
-
-  /* Firefox */
-  -moz-transform: rotate(-90deg);
-
-  /* IE */
-  -ms-transform: rotate(-90deg);
-
-  /* Opera */
-  -o-transform: rotate(-90deg);
-
-  float: left;
+  left: 0;
+  -webkit-transform-origin: 0 50%;
+     -moz-transform-origin: 0 50%;
+      -ms-transform-origin: 0 50%;
+       -o-transform-origin: 0 50%;
+          transform-origin: 0 50%;
+  -webkit-transform: rotate(-90deg) translate(-50%, 50%);
+     -moz-transform: rotate(-90deg) translate(-50%, 50%);
+      -ms-transform: rotate(-90deg) translate(-50%, 50%);
+       -o-transform: rotate(-90deg) translate(-50%, 50%);
+          transform: rotate(-90deg) translate(-50%, 50%);
+  width: 100vh;
+  position: absolute;
 }
 
 .rotate-right {
-  /* Safari */
-  -webkit-transform: rotate(90deg);
-
-  /* Firefox */
-  -moz-transform: rotate(90deg);
-
-  /* IE */
-  -ms-transform: rotate(90deg);
-
-  /* Opera */
-  -o-transform: rotate(90deg);
-
-  float: right;
+  right: 0;
+  -webkit-transform-origin: 100% 50%;
+     -moz-transform-origin: 100% 50%;
+      -ms-transform-origin: 100% 50%;
+       -o-transform-origin: 100% 50%;
+          transform-origin: 100% 50%;
+  -webkit-transform: rotate(90deg) translate(50%, 50%);
+     -moz-transform: rotate(90deg) translate(50%, 50%);
+      -ms-transform: rotate(90deg) translate(50%, 50%);
+       -o-transform: rotate(90deg) translate(50%, 50%);
+          transform: rotate(90deg) translate(50%, 50%);
+    width: 100vh;
+    position: absolute;
 }
 
 div h3 {
@@ -641,207 +655,9 @@ button {
 } */
 
 /* Media queries */
-
-@media (max-width: 768px) {
-  h3 {
-    font-size: 12px;
-    margin: 0;
-  }
-  /* .container {
-    float: none;
-    width: 100vw;
-  } */
-  .container {
-    width: 100vw;
-    height: 90vh;
-    margin: auto;
-    padding-top: 110px;
-    position: relative;
-    z-index: 2;
-  }
-  .container-list {
-    float: none;
-    width: 98%;
-    margin: auto;
-    padding-bottom: 60px;
-  }
-  .container-list-group {
-    width: 100%;
-  }
-  .list-group {
-    overflow: hidden;
-  }
-  .form-group {
-    min-width: 280px;
-    margin: auto;
-    padding: 2px;
-  }
-  /* .container h1 {
-    font-size: 54px;
-    margin: auto;
-  }
-  .container h2 {
-    font-size: 26px;
-    margin-top: -20px;
-    width: 162px;
-  } */
-  .container h1 {
-    font-family: "Changa One", cursive;
-    text-shadow: 2px 0px 3px rgba(150, 150, 150, 0.33);
-    font-size: 38px;
-    margin: auto;
-    color: #fff;
-    margin-top: -26px;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    user-select: none;
-  }
-
-  .container h2 {
-    font-family: "Patua One", cursive;
-    text-shadow: 2px 0px 3px rgba(150, 150, 150, 0.33);
-    font-size: 22px;
-    margin: auto;
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    margin-top: -40px;
-    margin-bottom: 10px;
-    color: #222222;
-    background: white;
-    width: 140px;
-    border-radius: 21px;
-    user-select: none;
-  }
-
-  .container h3 {
-    font-family: "Oxygen", sans-serif;
-    text-shadow: 2px 0px 3px rgba(150, 150, 150, 0.33);
-    font-size: 12px;
-    margin: auto;
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    margin-top: 10vh;
-    margin-bottom: 24px;
-    user-select: none;
-  }
-
-  .container h4 {
-    font-family: "Oxygen", sans-serif;
-    text-shadow: 2px 0px 3px rgba(150, 150, 150, 0.33);
-    font-size: 10px;
-    margin: auto;
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    margin-top: 6px;
-    margin-bottom: 20px;
-    user-select: none;
-  }
-
-  .container h5 {
-    font-family: "Oxygen", sans-serif;
-    text-shadow: 2px 0px 3px rgba(150, 150, 150, 0.33);
-    font-size: 10px;
-    margin: auto;
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    user-select: none;
-  }
-
-  .container-center {
-    width: 65vw;
-    height: 44vh;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .button-top {
-    font-size: 12px;
-    margin: auto;
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    margin-top: -4.2vh;
-    width: 82.5vw;
-  }
-
-  .button-bottom {
-    font-family: "Oxygen", sans-serif;
-    text-shadow: 2px 0px 3px rgba(150, 150, 150, 0.33);
-    font-size: 12px;
-    margin: auto;
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    margin-top: 20vh;
-    width: 82.5vw;
-  }
-
-  .button-left {
-    font-family: "Oxygen", sans-serif;
-    text-shadow: 2px 0px 3px rgba(150, 150, 150, 0.33);
-    font-size: 12px;
-    margin: auto;
-    color: #fff;
-    /* display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center; */
-    float: left;
-    margin-left: -27vw;
-    /* margin-right: 300px; */
-    width: 90vw;
-    position: absolute;
-  }
-
-  .button-right {
-    font-family: "Oxygen", sans-serif;
-    text-shadow: 2px 0px 3px rgba(150, 150, 150, 0.33);
-    font-size: 12px;
-    margin: auto;
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-    float: right;
-    margin-left: -68vw;
-    /* margin-bottom: 1500px; */
-    width: 95vw;
-    position: absolute;
-  }
-  .block {
-    display: flex;
-    width: 95vw;
-    border: none;
-    padding: 14px 26px;
-    cursor: pointer;
-    text-align: center;
-    justify-content: center;
-    filter: alpha(opacity=60);
-    -moz-opacity: 0.6;
-    opacity: 0.6;
-    padding: 6px;
+@media only screen and (max-width: 767px) {
+  .block{
+    padding: 10px;
+    font-size: 20px;
   }
 }
