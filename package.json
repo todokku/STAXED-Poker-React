@@ -31,6 +31,7 @@
     "knex": "^0.15.2",
     "lodash": "^4.17.10",
     "pg": "^7.4.3",
+    "react-pose": "^3.3.6",
     "react-pure-lifecycle": "^3.0.0"
   },
   "devDependencies": {
