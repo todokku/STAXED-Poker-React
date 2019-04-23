@@ -38,7 +38,3 @@ Existing wordpress plugins tended to lead users away and charged varying monthly
 ## Deployment
 
 Deployed Application using Heroku
-
-## Authors
-
-- **Nathan Keolasy** - Full Stack Developer - [LinkedIn](https://www.linked.com/nathan-keolasy) - [Portfolio](https://www.keolazy.com)
